@@ -1,11 +1,14 @@
 import imageSample from "../../public/resources/154.png";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import styles from "../app/page.module.scss";
 
-export const HeroImage = () => {
+interface HeroImageProps {
+  imageUrl: StaticImageData;
+}
+export const HeroImage = ({ imageUrl }: HeroImageProps) => {
   return (
     <Image
-      src={imageSample}
+      src={imageUrl}
       alt={"test"}
       priority
       className={styles.hero_image}
