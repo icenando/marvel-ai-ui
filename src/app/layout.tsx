@@ -24,7 +24,7 @@ export default function RootLayout({
           <Link href={"/"}>CARAVARVEL-AI</Link>
           <span>
             <Link href={"/about"}>ABOUT</Link>
-            <div>CONTACT</div>
+            <Link href={"/contact"}>CONTACT</Link>
           </span>
         </header>
         {children}
