@@ -1,12 +1,13 @@
 import { InfoBox } from "@/components/infoBox";
 import styles from "../page.module.scss";
 import { HeroImage } from "@/components/heroImage";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { DynamoResponse } from "@/types/dynamoResponse";
 
 import imageSample from "../../../public/resources/154.png";
 import dynamoResponse from "../../__fixtures__/dynamo_response.json";
 
+// TODO: implement staticProps logic
+// import { GetStaticProps, InferGetStaticPropsType } from "next";
+// import { DynamoResponse } from "@/types/dynamoResponse";
 // export const getStaticProps = (async context => {
 //   const response = dynamoResponse;
 //   console.log(response);
@@ -20,7 +21,7 @@ import dynamoResponse from "../../__fixtures__/dynamo_response.json";
 // }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const MainSection = () => {
-  const response = dynamoResponse;
+  const response = dynamoResponse; // TODO: remove this once staticProps logic done
 
   return (
     <main className={styles.main}>

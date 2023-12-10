@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import styles from "./page.module.scss";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className={styles.header}>
-          <div>CARAVARVEL-AI</div>
+          <Link href={"/"}>CARAVARVEL-AI</Link>
           <span>
-            <div>ABOUT</div>
+            <Link href={"/about"}>ABOUT</Link>
             <div>CONTACT</div>
           </span>
         </header>

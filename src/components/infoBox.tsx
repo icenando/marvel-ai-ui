@@ -1,4 +1,5 @@
 import styles from "../app/page.module.scss";
+import { MarvelAttributionText } from "./marvelAttribution";
 
 interface InfoBoxProps {
   title: string;
@@ -31,9 +32,7 @@ export const InfoBox = ({
       >
         SEE EVENT AT MARVEL.COM
       </a>
-      <p className={styles.info_box__attribution_text}>
-        Data provided by Marvel. © 2014 Marvel
-      </p>
+      <MarvelAttributionText />
       <p className={styles.spacer}></p>
       <div className={styles.info_box__navigation}>
         <p>{"<< PREV"}</p>

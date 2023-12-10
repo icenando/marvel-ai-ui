@@ -1,4 +1,3 @@
-import imageSample from "../../public/resources/154.png";
 import Image, { StaticImageData } from "next/image";
 import styles from "../app/page.module.scss";
 
