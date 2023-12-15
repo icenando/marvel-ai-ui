@@ -5,21 +5,6 @@ import { HeroImage } from "@/components/heroImage";
 import imageSample from "../../../public/resources/154.png";
 import dynamoResponse from "../../__fixtures__/dynamo_response.json";
 
-// TODO: implement staticProps logic
-// import { GetStaticProps, InferGetStaticPropsType } from "next";
-// import { DynamoResponse } from "@/types/dynamoResponse";
-// export const getStaticProps = (async context => {
-//   const response = dynamoResponse;
-//   console.log(response);
-//   return { props: { response } };
-// }) satisfies GetStaticProps<{
-//   response: DynamoResponse;
-// }>;
-
-// export const MainSection = ({
-//   response,
-// }: InferGetStaticPropsType<typeof getStaticProps>) => {
-
 export const MainSection = () => {
   const response = dynamoResponse; // TODO: remove this once staticProps logic done
 
