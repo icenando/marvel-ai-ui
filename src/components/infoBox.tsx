@@ -34,10 +34,6 @@ export const InfoBox = ({
       </a>
       <MarvelAttributionText />
       <p className={styles.spacer}></p>
-      <div className={styles.info_box__navigation}>
-        <p>{"<< PREV"}</p>
-        <p>{"NEXT >>"}</p>
-      </div>
     </div>
   );
 };

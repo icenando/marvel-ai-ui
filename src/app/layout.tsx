@@ -23,6 +23,7 @@ export default function RootLayout({
         <header className={styles.header}>
           <Link href={"/"}>CARAVARVEL-AI</Link>
           <span>
+            <Link href={"/archive"}>ARCHIVE</Link>
             <Link href={"/about"}>ABOUT</Link>
             <Link href={"/contact"}>CONTACT</Link>
           </span>

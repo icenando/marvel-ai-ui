@@ -35,10 +35,10 @@ const About = () => {
       </p>
       <p className={styles.spacer}></p>
       <p>
-        Once Dall-E finishes creating the image from the prompt it returns
-        the URL to the image. This is then fetched and the image saved in
-        an S3 bucket. The address to this bucked is saved in the DB alongside
-        the description, title and some other bits of information.
+        Once Dall-E finishes creating the image from the prompt it returns the
+        URL to the image. This is then fetched and the image saved in an S3
+        bucket. The address to this bucked is saved in the DB alongside the
+        description, title and some other bits of information.
       </p>
     </p>
   );
