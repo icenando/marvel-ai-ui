@@ -1,11 +1,11 @@
-export interface DynamoResponse {
-  end: string;
-  used: boolean;
-  description: string;
+export interface EventsResult {
   id: number;
-  url: string;
-  start: string;
   title: string;
-  revisedPrompt: string;
+  description: string;
+  start: string; // String but in Date format
+  end: string;
+  url: string;
+  used: boolean;
   imgUrl: string;
+  revisedPrompt: string;
 }

@@ -3,31 +3,32 @@ import styles from "../page.module.scss";
 import { HeroImage } from "@/components/heroImage";
 import imageSample from "../../../public/resources/154.png";
 import dynamoResponse from "../../../__fixtures__/dynamo_response.json";
-import { DynamoResponse } from "@/types/dynamoResponse";
-import type {
-  InferGetStaticPropsType,
-  GetStaticProps,
-  GetStaticPaths,
-} from "next";
+import { EventsResult } from "@/types/dynamoResponse";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import { fetchAllEvents, fetchSingleEvent } from "@/middleware/db";
 
 // for the [eventId] dynamic path
 export const generateStaticParams = async () => {
-  const allUsedEvents = await queryDB().then(res => res.json());
+  const allUsedEvents: EventsResult[] = await fetchAllEvents().then(res =>
+    res.json()
+  );
 
   return {
-    paths: allUsedEvents.map((usedEvent: DynamoResponse) => {
-      params: {
-        eventId: usedEvent.id.toString();
-      }
+    paths: allUsedEvents.map(usedEvent => {
+      return {
+        params: {
+          eventId: usedEvent.id.toString(),
+        },
+      };
     }),
   };
 };
 
 // uses URL param to get the actual object at this path
 export const getStaticProps = (async ({ params }) => {
-  const marvelEvent: DynamoResponse = await queryDB(params.id).then(res =>
-    res.json()
-  );
+  const marvelEvent: EventsResult = await fetchSingleEvent(
+    params!.id as string
+  ).then(res => res.json());
 
   return {
     props: {
@@ -35,7 +36,7 @@ export const getStaticProps = (async ({ params }) => {
     },
   };
 }) satisfies GetStaticProps<{
-  marvelEvent: DynamoResponse;
+  marvelEvent: EventsResult;
 }>;
 
 const Event = ({
