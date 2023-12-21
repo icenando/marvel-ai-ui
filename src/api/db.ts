@@ -4,17 +4,9 @@ import { String } from "aws-sdk/clients/appstream";
 
 const db = new AWS.DynamoDB.DocumentClient();
 const eventsTable = process.env.EVENTS_TABLE;
-const region = process.env.REGION;
-const accessKeyId = process.env.ACCESS_KEY_ID;
-const secretAccessKey = process.env.SECRET_ACCESS_KEY;
-
-AWS.config.update({
-  region,
-  accessKeyId,
-  secretAccessKey,
-});
 
 export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
+  console.log(eventsTable);
   if (!eventsTable) {
     throw "Couldn't read table name from env vars";
   }
@@ -25,7 +17,7 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
       "#used": "used",
     },
     ExpressionAttributeValues: {
-      ":value": false,
+      ":value": true,
     },
   };
 
@@ -36,7 +28,7 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
         reject(err);
       } else {
         console.log(
-          "Query succeeded. Item:",
+          "fetchAllEvents scan succeeded. Item:",
           JSON.stringify(data!.Items, null, 2)
         );
         resolve(data.Items as EventsResult[]);
@@ -66,7 +58,7 @@ export const fetchSingleEvent = async (
         reject(err);
       } else {
         console.log(
-          "Query succeeded. Item:",
+          "fetchSingleEvent query succeeded. Item:",
           JSON.stringify(data.Items, null, 2)
         );
         resolve(data!.Items as unknown as EventsResult);

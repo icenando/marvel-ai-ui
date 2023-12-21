@@ -1,16 +1,14 @@
 import { InfoBox } from "@/components/infoBox";
-import styles from "../page.module.scss";
+import styles from "../../../styles/page.module.scss";
 import { HeroImage } from "@/components/heroImage";
-import imageSample from "../../../public/resources/154.png";
-import dynamoResponse from "../../../__fixtures__/dynamo_response.json";
 import { EventsResult } from "@/types/dynamoResponse";
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
-import { fetchAllEvents, fetchSingleEvent } from "@/middleware/db";
+import { fetchAllEvents, fetchSingleEvent } from "@/api/db";
 
+// Fecthes all "used" events from DB to create links
 // for the [eventId] dynamic path
 export const generateStaticParams = async () => {
-  const allUsedEvents: EventsResult[] = await fetchAllEvents().then(res =>
-    res.json()
+  const allUsedEvents: EventsResult[] = await fetchAllEvents().then(
+    res => res as EventsResult[]
   );
 
   return {
@@ -24,27 +22,16 @@ export const generateStaticParams = async () => {
   };
 };
 
-// uses URL param to get the actual object at this path
-export const getStaticProps = (async ({ params }) => {
-  const marvelEvent: EventsResult = await fetchSingleEvent(
-    params!.id as string
-  ).then(res => res.json());
+const Event = async ({ params }: { params: { slug: string } }) => {
+  const marvelEvent: EventsResult = await fetchSingleEvent(params.slug).then(
+    res => res as EventsResult
+  );
 
-  return {
-    props: {
-      marvelEvent,
-    },
-  };
-}) satisfies GetStaticProps<{
-  marvelEvent: EventsResult;
-}>;
+  const bucketName = process.env.BUCKET_NAME;
 
-const Event = ({
-  marvelEvent,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main className={styles.main}>
-      <HeroImage imageUrl={marvelEvent.imgUrl} />
+      <HeroImage imageUrl={`/${bucketName}/${marvelEvent.imgUrl}`} />
       <InfoBox
         title={marvelEvent.title}
         marvelDescription={marvelEvent.description}

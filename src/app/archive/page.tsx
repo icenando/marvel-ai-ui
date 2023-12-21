@@ -1,39 +1,22 @@
-import Image, { StaticImageData } from "next/image";
-import styles from "../page.module.scss";
+import Image from "next/image";
+import styles from "../../components/page.module.scss";
 import Link from "next/link";
-import imageSample from "../../../public/resources/154.png";
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import { EventsResult } from "@/types/dynamoResponse";
-import { fetchAllEvents } from "@/middleware/db";
+import { fetchAllEvents } from "@/api/db";
 
-// Get all "used" documents from DynamoDB, fetches thumbs from S3 bucket as static prop
-//
-export const getStaticProps = (async () => {
-  const marvelEvents: EventsResult[] = await fetchAllEvents().then(res =>
-    res.json()
+const Archive = async () => {
+  // const thumbs = [imageSample, imageSample, imageSample, imageSample];
+  const marvelEvents: EventsResult[] = await fetchAllEvents().then(
+    res => res as EventsResult[]
   );
 
-  return {
-    props: {
-      marvelEvents: marvelEvents,
-    },
-  };
-}) satisfies GetStaticProps<{
-  marvelEvents: EventsResult[];
-}>;
+  const bucketName = process.env.BUCKET_NAME;
 
-interface ArchiveProps {
-  thumbs: string[];
-}
-const Archive = ({
-  marvelEvents,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // const thumbs = [imageSample, imageSample, imageSample, imageSample];
   const thumbs_section = marvelEvents.map(event => {
     return (
-      <Link href={"/"} key={event.id}>
+      <Link href={`archive/${event.id}`} key={event.id}>
         <Image
-          src={event.imgUrl}
+          src={`/${bucketName}/${event.imgUrl}`}
           alt={event.description}
           priority
           className={styles.thumbs_section_image}
