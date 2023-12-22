@@ -1,14 +1,13 @@
 import Image from "next/image";
-import styles from "../../components/page.module.scss";
+import styles from "../../styles/page.module.scss";
 import Link from "next/link";
 import { EventsResult } from "@/types/dynamoResponse";
 import { fetchAllEvents } from "@/api/db";
 
 const Archive = async () => {
-  // const thumbs = [imageSample, imageSample, imageSample, imageSample];
-  const marvelEvents: EventsResult[] = await fetchAllEvents().then(
-    res => res as EventsResult[]
-  );
+  const marvelEvents: EventsResult[] = await fetchAllEvents().then(res => {
+    return res as EventsResult[];
+  });
 
   const bucketName = process.env.BUCKET_NAME;
 
@@ -16,7 +15,7 @@ const Archive = async () => {
     return (
       <Link href={`archive/${event.id}`} key={event.id}>
         <Image
-          src={`/${bucketName}/${event.imgUrl}`}
+          src={`${bucketName}/${event.imgUrl}`}
           alt={event.description}
           priority
           className={styles.thumbs_section_image}

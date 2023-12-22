@@ -1,12 +1,10 @@
 import { EventsResult } from "@/types/dynamoResponse";
 import * as AWS from "aws-sdk";
-import { String } from "aws-sdk/clients/appstream";
 
 const db = new AWS.DynamoDB.DocumentClient();
 const eventsTable = process.env.EVENTS_TABLE;
 
 export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
-  console.log(eventsTable);
   if (!eventsTable) {
     throw "Couldn't read table name from env vars";
   }
@@ -24,7 +22,10 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
   return new Promise((resolve, reject) => {
     db.scan(params, (err, data) => {
       if (err) {
-        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        console.error(
+          "fetchAllEvents failed with error:",
+          JSON.stringify(err, null, 2)
+        );
         reject(err);
       } else {
         console.log(
@@ -38,7 +39,7 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
 };
 
 export const fetchSingleEvent = async (
-  eventId: String
+  eventId: number
 ): Promise<void | EventsResult> => {
   if (!eventsTable) {
     throw "Couldn't read table name from env vars";
@@ -46,7 +47,7 @@ export const fetchSingleEvent = async (
   const params = {
     TableName: eventsTable,
     ExpressionAttributeValues: {
-      ":id": { N: eventId },
+      ":id": eventId,
     },
     KeyConditionExpression: "id = :id",
   };
@@ -54,7 +55,10 @@ export const fetchSingleEvent = async (
   return new Promise((resolve, reject) => {
     db.query(params, (err, data) => {
       if (err) {
-        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        console.error(
+          "fetchSingleEvent failed with error:",
+          JSON.stringify(err, null, 2)
+        );
         reject(err);
       } else {
         console.log(

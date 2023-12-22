@@ -1,5 +1,5 @@
 import { InfoBox } from "@/components/infoBox";
-import styles from "../../components/page.module.scss";
+import styles from "../../styles/page.module.scss";
 import { HeroImage } from "@/components/heroImage";
 
 import imageSample from "../../../public/resources/154.png";

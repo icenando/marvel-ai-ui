@@ -11,27 +11,20 @@ export const generateStaticParams = async () => {
     res => res as EventsResult[]
   );
 
-  return {
-    paths: allUsedEvents.map(usedEvent => {
-      return {
-        params: {
-          eventId: usedEvent.id.toString(),
-        },
-      };
-    }),
-  };
+  return allUsedEvents.map(usedEvent => ({ eventId: usedEvent.id.toString() }));
 };
 
-const Event = async ({ params }: { params: { slug: string } }) => {
-  const marvelEvent: EventsResult = await fetchSingleEvent(params.slug).then(
-    res => res as EventsResult
-  );
+const Event = async ({ params }: { params: { eventId: string } }) => {
+  console.log(`SLUG: ${params.eventId}`);
+  const marvelEvent: EventsResult = await fetchSingleEvent(
+    parseInt(params.eventId)
+  ).then(res => res as EventsResult);
 
   const bucketName = process.env.BUCKET_NAME;
 
   return (
     <main className={styles.main}>
-      <HeroImage imageUrl={`/${bucketName}/${marvelEvent.imgUrl}`} />
+      <HeroImage imageUrl={`${bucketName}/${marvelEvent.imgUrl}`} />
       <InfoBox
         title={marvelEvent.title}
         marvelDescription={marvelEvent.description}
