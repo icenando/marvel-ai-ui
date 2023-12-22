@@ -25,15 +25,16 @@ export const InfoBox = ({
       <p className={styles.info_box__attribute}>DALL-E REVISED DESCRIPTION</p>
       <p className={styles.info_box__value}>{revisedDescription}</p>
       <p className={styles.spacer}></p>
-      <a
-        href={linkToEvent}
-        target="_blank"
-        className={styles.info_box__link_to_event}
-      >
-        SEE EVENT AT MARVEL.COM
-      </a>
+      <button className={styles.info_box__button}>
+        <a
+          href={linkToEvent}
+          target="_blank"
+          className={styles.info_box__link_to_event}
+        >
+          SEE EVENT AT MARVEL.COM
+        </a>
+      </button>
       <MarvelAttributionText />
-      <p className={styles.spacer}></p>
     </div>
   );
 };
