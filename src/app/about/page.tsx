@@ -1,5 +1,5 @@
 import { MarvelAttributionText } from "@/components/marvelAttribution";
-import styles from "../page.module.scss";
+import styles from "../../styles/page.module.scss";
 
 const About = () => {
   const aboutText = (

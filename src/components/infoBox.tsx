@@ -1,4 +1,4 @@
-import styles from "../app/page.module.scss";
+import styles from "../styles/page.module.scss";
 import { MarvelAttributionText } from "./marvelAttribution";
 
 interface InfoBoxProps {

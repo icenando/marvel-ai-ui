@@ -1,8 +1,8 @@
 import Image, { StaticImageData } from "next/image";
-import styles from "../app/page.module.scss";
+import styles from "../styles/page.module.scss";
 
 interface HeroImageProps {
-  imageUrl: StaticImageData;
+  imageUrl: StaticImageData | string; //TODO: remove StaticImageData once complete
 }
 export const HeroImage = ({ imageUrl }: HeroImageProps) => {
   return (
