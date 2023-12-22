@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "dall-e-images-bucket.s3.eu-west-2.amazonaws.com",
         port: "",
-        pathname: "/events/**",
+        pathname: "/**",
       },
     ],
   },

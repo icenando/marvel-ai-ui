@@ -5,9 +5,9 @@ import { EventsResult } from "@/types/dynamoResponse";
 import { fetchAllEvents } from "@/api/db";
 
 const Archive = async () => {
-  const marvelEvents: EventsResult[] = await fetchAllEvents().then(res => {
-    return res as EventsResult[];
-  });
+  const marvelEvents: EventsResult[] = await fetchAllEvents().then(
+    res => res as EventsResult[]
+  );
 
   const bucketName = process.env.BUCKET_NAME;
 

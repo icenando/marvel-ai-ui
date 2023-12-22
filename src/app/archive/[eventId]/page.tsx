@@ -15,7 +15,6 @@ export const generateStaticParams = async () => {
 };
 
 const Event = async ({ params }: { params: { eventId: string } }) => {
-  console.log(`SLUG: ${params.eventId}`);
   const marvelEvent: EventsResult = await fetchSingleEvent(
     parseInt(params.eventId)
   ).then(res => res as EventsResult);

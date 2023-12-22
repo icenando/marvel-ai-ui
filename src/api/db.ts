@@ -8,6 +8,7 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
   if (!eventsTable) {
     throw "Couldn't read table name from env vars";
   }
+
   const params = {
     TableName: eventsTable,
     FilterExpression: "#used = :value",
@@ -44,12 +45,13 @@ export const fetchSingleEvent = async (
   if (!eventsTable) {
     throw "Couldn't read table name from env vars";
   }
+
   const params = {
     TableName: eventsTable,
+    KeyConditionExpression: "id = :id",
     ExpressionAttributeValues: {
       ":id": eventId,
     },
-    KeyConditionExpression: "id = :id",
   };
 
   return new Promise((resolve, reject) => {
@@ -65,7 +67,7 @@ export const fetchSingleEvent = async (
           "fetchSingleEvent query succeeded. Item:",
           JSON.stringify(data.Items, null, 2)
         );
-        resolve(data!.Items as unknown as EventsResult);
+        resolve(data.Items![0] as EventsResult);
       }
     });
   });
