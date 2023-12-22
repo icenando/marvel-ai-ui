@@ -11,7 +11,7 @@ const Archive = async () => {
 
   const bucketName = process.env.BUCKET_NAME;
 
-  const thumbs_section = marvelEvents.map(event => {
+  const thumbs_section = marvelEvents.reverse().map(event => {
     return (
       <Link href={`archive/${event.id}`} key={event.id}>
         <Image
