@@ -25,7 +25,12 @@ const Archive = async () => {
       </Link>
     );
   });
-  return <div className={styles.thumbs_section}>{thumbs_section}</div>;
+  return (
+    <>
+      <p className={styles.archive__title}>ARCHIVE</p>
+      <div className={styles.thumbs_section}>{thumbs_section}</div>;
+    </>
+  );
 };
 
 export default Archive;
