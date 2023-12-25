@@ -1,22 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond&family=Julius+Sans+One&display=swap");
 
-.main {
-  background-color: #404040;
-  font-family: "Julius Sans One", Geneva, Verdana, sans-serif;
-  display: flex;
-}
-
 .header {
   font-family: "Julius Sans One", Geneva, Verdana, sans-serif;
   justify-content: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 55px;
+  height: 50px;
   width: 100vw;
   background-color: #d9d9d9;
   font-size: 24px;
   color: black;
+  text-wrap: nowrap;
 
   a,
   div {
@@ -28,8 +23,59 @@
   }
 }
 
-.hero_image {
-  margin: 50px 25px 50px 50px;
+.main {
+  font-family: "Julius Sans One", Geneva, Verdana, sans-serif;
+
+  background-color: #404040;
+  padding: 50px 0px;
+
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  .info_box {
+    background-color: #d9d9d9;
+    color: black;
+    max-width: 750px;
+    height: 750px;
+    padding: 25px 25px;
+    display: flex;
+    flex-direction: column;
+
+    &__attribute {
+      font-size: 24px;
+    }
+
+    &__value {
+      font-size: 16px;
+      min-height: 20px;
+      max-height: 200px;
+      overflow: scroll;
+      padding-top: 5px;
+    }
+
+    &__button {
+      border-radius: 50px;
+      border: none;
+      margin: auto;
+      padding: 5px;
+      height: 60px;
+      width: 200px;
+    }
+
+    &__link_to_event {
+      font-size: 14px;
+      text-align: end;
+      margin-top: 15px;
+    }
+
+    &__navigation {
+      font-size: 38px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+  }
 }
 
 .thumbs_section {
@@ -40,51 +86,6 @@
     border: gray solid;
     border-width: 1px;
     margin: 10px;
-  }
-}
-
-.info_box {
-  margin: 50px 25px 50px 25px;
-  background-color: #d9d9d9;
-  color: black;
-  width: 700px;
-  height: 750px;
-  padding: 25px 25px;
-  display: flex;
-  flex-direction: column;
-
-  &__attribute {
-    font-size: 24px;
-  }
-
-  &__value {
-    font-size: 16px;
-    min-height: 20px;
-    max-height: 200px;
-    overflow: scroll;
-    padding-top: 5px;
-  }
-
-  &__button {
-    border-radius: 50px;
-    border: none;
-    margin: auto;
-    padding: 5px;
-    height: 60px;
-    width: 200px;
-  }
-
-  &__link_to_event {
-    font-size: 14px;
-    text-align: end;
-    margin-top: 15px;
-  }
-
-  &__navigation {
-    font-size: 38px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
   }
 }
 
@@ -151,5 +152,41 @@
       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 24px;
     text-align: center;
+  }
+}
+
+// MOBILE
+@media (max-width: 780px) {
+  .main {
+    padding: 0;
+
+    .info_box {
+      &__attribute {
+        font-size: 20px;
+      }
+  
+      &__value {
+        font-size: 16px;
+        min-height: 20px;
+      }
+    }
+  }
+
+  .thumbs_section {
+    margin: 20px 0;
+    &_image {
+      margin: 5px;
+    }
+  }
+
+  .hero_image {
+    object-fit: contain;
+    max-width: 100%;
+    margin: -185px 0;
+  }
+
+  .attribution_text {
+    margin-top: 20px;
+    font-size: 14px;
   }
 }

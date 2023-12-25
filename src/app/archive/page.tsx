@@ -28,7 +28,7 @@ const Archive = async () => {
   return (
     <>
       <p className={styles.archive__title}>ARCHIVE</p>
-      <div className={styles.thumbs_section}>{thumbs_section}</div>;
+      <div className={styles.thumbs_section}>{thumbs_section}</div>
     </>
   );
 };
