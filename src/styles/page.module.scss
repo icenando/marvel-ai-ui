@@ -2,7 +2,6 @@
 
 .header {
   font-family: "Julius Sans One", Geneva, Verdana, sans-serif;
-  justify-content: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -156,7 +155,15 @@
 }
 
 // MOBILE
-@media (max-width: 780px) {
+@media (max-width: 760px) {
+  .header {
+    font-size: 10px;
+
+    a {
+      margin: 0 10px;
+    }
+  }
+
   .main {
     padding: 0;
 
@@ -164,7 +171,7 @@
       &__attribute {
         font-size: 20px;
       }
-  
+
       &__value {
         font-size: 16px;
         min-height: 20px;
@@ -182,7 +189,7 @@
   .hero_image {
     object-fit: contain;
     max-width: 100%;
-    margin: -185px 0;
+    margin: -170px 0;
   }
 
   .attribution_text {
