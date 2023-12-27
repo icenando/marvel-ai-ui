@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Julius_Sans_One } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Caravarvel-AI",
   description:
     "Exhibits images created with Dall-E using Marvel Comics events descriptions as prompts",
 };
+
+const julius = Julius_Sans_One({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default function RootLayout({
   children,
@@ -19,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={julius.className}>
         <header className={styles.header}>
           <Link href={"/"}>CARAVARVEL-AI</Link>
           <span>
