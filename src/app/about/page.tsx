@@ -3,7 +3,7 @@ import styles from "../../styles/page.module.scss";
 
 const About = () => {
   const aboutText = (
-    <p className={styles.about__text}>
+    <div className={styles.about__text}>
       <p>
         Caravarvel-AI (Caravaggio + Marvel + AI) is a personal project that uses
         <a href="https://developer.marvel.com/" target="_blank">
@@ -42,14 +42,19 @@ const About = () => {
         bucket. The address to this bucked is saved in the DB alongside the
         description, title and some other bits of information.
       </p>
-    </p>
+      <p className={styles.spacer}></p>
+      <p>
+        DISCLAIMER: This is a fan project. It is <i>NOT an official Marvel project nor is
+        it endorsed by Marvel</i>.
+      </p>
+    </div>
   );
 
   return (
     <div className={styles.about}>
-      <p className={styles.about__title}>ABOUT</p>
-      <p className={styles.about__text}>{aboutText}</p>
-      <p className={styles.spacer}></p>
+      <div className={styles.about__title}>ABOUT</div>
+      <div className={styles.about__text}>{aboutText}</div>
+      <div className={styles.spacer}></div>
       <MarvelAttributionText />
     </div>
   );
