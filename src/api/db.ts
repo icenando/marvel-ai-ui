@@ -1,7 +1,7 @@
 import { EventsResult } from "@/types/dynamoResponse";
-import * as AWS from "aws-sdk";
+import { DynamoDB } from "aws-sdk";
 
-const db = new AWS.DynamoDB.DocumentClient();
+const db = new DynamoDB.DocumentClient();
 const eventsTable = process.env.EVENTS_TABLE;
 
 export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {

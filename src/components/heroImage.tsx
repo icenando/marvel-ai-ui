@@ -2,7 +2,7 @@ import Image, { StaticImageData } from "next/image";
 import styles from "../styles/page.module.scss";
 
 interface HeroImageProps {
-  imageUrl: StaticImageData | string; //TODO: remove StaticImageData once complete
+  imageUrl: string;
 }
 export const HeroImage = ({ imageUrl }: HeroImageProps) => {
   return (
