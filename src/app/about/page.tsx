@@ -21,8 +21,10 @@ const About = () => {
       <p className={styles.spacer}></p>
       <p className={styles.about__prompt}>
         &#34;Create a Caravaggio style painting based on the following prompt,
-        ignoring references to the artists who created this story and focusing
-        on the summary of the story. Do not include any text in the image&#34;
+        ignoring the artists who created this story if there are any references
+        to them. Focus on the summary of the story. Do not include any text in
+        the resulting image. Ensure that there are no DC comics characters in
+        the resulting image:&#34;
       </p>
       <p className={styles.spacer}></p>
       <p>followed by the description of the event.</p>
