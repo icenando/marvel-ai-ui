@@ -26,10 +26,10 @@ const Archive = async () => {
     );
   });
   return (
-    <>
+    <div className={styles.archive}>
       <p className={styles.archive__title}>ARCHIVE</p>
       <div className={styles.thumbs_section}>{thumbs_section}</div>
-    </>
+    </div>
   );
 };
 
