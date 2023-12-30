@@ -21,14 +21,19 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
 
   const bucketName = process.env.BUCKET_NAME;
 
+  const { imgUrl, title, description, revisedPrompt, url } = marvelEvent;
+
   return (
     <main className={styles.main}>
-      <HeroImage imageUrl={`${bucketName}/${marvelEvent.imgUrl}`} />
+      <HeroImage
+        imageUrl={`${bucketName}/${imgUrl}`}
+        description={description}
+      />
       <InfoBox
-        title={marvelEvent.title}
-        marvelDescription={marvelEvent.description}
-        revisedDescription={marvelEvent.revisedPrompt}
-        linkToEvent={marvelEvent.url}
+        title={title}
+        marvelDescription={description}
+        revisedDescription={revisedPrompt}
+        linkToEvent={url}
       />
     </main>
   );
