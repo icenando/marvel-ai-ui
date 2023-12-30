@@ -11,16 +11,21 @@ export const MainSection = async () => {
 
   const todaysImage = marvelEvents.reverse()[0];
 
+  const { imgUrl, title, description, revisedPrompt, url } = todaysImage;
+
   const bucketName = process.env.BUCKET_NAME;
 
   return (
     <main className={styles.main}>
-      <HeroImage imageUrl={`${bucketName}/${todaysImage.imgUrl}`} />
+      <HeroImage
+        imageUrl={`${bucketName}/${imgUrl}`}
+        description={description}
+      />
       <InfoBox
-        title={todaysImage.title}
-        marvelDescription={todaysImage.description}
-        revisedDescription={todaysImage.revisedPrompt}
-        linkToEvent={todaysImage.url}
+        title={title}
+        marvelDescription={description}
+        revisedDescription={revisedPrompt}
+        linkToEvent={url}
       />
     </main>
   );
