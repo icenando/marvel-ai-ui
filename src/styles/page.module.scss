@@ -154,7 +154,7 @@
 @media (max-width: 760px) {
   .header {
     font-size: 10px;
-    position: absolute;
+    position: relative;
     z-index: 10;
 
     a {
@@ -175,6 +175,11 @@
         min-height: 20px;
       }
     }
+
+    .hero_image {
+      object-fit: contain;
+      height: 100vmin;
+    }
   }
 
   .thumbs_section {
@@ -182,13 +187,6 @@
     &_image {
       margin: 5px;
     }
-  }
-
-  .hero_image {
-    object-fit: contain;
-    max-width: 100%;
-    margin-top: -110px;
-    margin-bottom: -160px;
   }
 
   .attribution_text {

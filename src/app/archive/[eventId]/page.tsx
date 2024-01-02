@@ -4,6 +4,10 @@ import { HeroImage } from "@/components/heroImage";
 import { EventsResult } from "@/types/dynamoResponse";
 import { fetchAllEvents, fetchSingleEvent } from "@/api/db";
 
+// Return 404 if path has not been generated
+// if set to true, will fetch on deman
+export const dynamicParams = false;
+
 // Fecthes all "used" events from DB to create links
 // for the [eventId] dynamic path
 export const generateStaticParams = async () => {
