@@ -1,8 +1,11 @@
 {
-    "crons": [
-      {
-        "path": "/api/cron",
-        "schedule": "0 5 * * *"
-      }
-    ]
-  }
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "0 5 * * *"
+    }
+  ],
+  "regions": [
+    "lhr1"
+  ]
+}
