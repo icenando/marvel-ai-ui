@@ -4,12 +4,10 @@ import { HeroImage } from "@/components/heroImage";
 import { EventsResult } from "@/types/dynamoResponse";
 import { fetchAllEvents, fetchSingleEvent } from "@/api/db";
 
-// Return 404 if path has not been generated
-// if set to true, will fetch on deman
+// Return 404 if path has not been generated. If set to true, will fetch on demand
 export const dynamicParams = false;
 
-// Fecthes all "used" events from DB to create links
-// for the [eventId] dynamic path
+// Create links for the [eventId] dynamic path for all used events in DB
 export const generateStaticParams = async () => {
   const allUsedEvents: EventsResult[] = await fetchAllEvents().then(
     res => res as EventsResult[]
