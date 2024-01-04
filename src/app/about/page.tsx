@@ -1,5 +1,7 @@
 import { MarvelAttributionText } from "@/components/marvelAttribution";
 import styles from "../../styles/page.module.scss";
+import Image from "next/image";
+import architecture from "../../resources/architecture.png";
 
 const About = () => {
   const aboutText = (
@@ -44,8 +46,8 @@ const About = () => {
       </p>
       <p className={styles.spacer}></p>
       <p>
-        DISCLAIMER: This is a fan project. It is <i>NOT an official Marvel project nor is
-        it endorsed by Marvel</i>.
+        DISCLAIMER: This is a fan project. It is{" "}
+        <i>NOT an official Marvel project nor is it endorsed by Marvel</i>.
       </p>
     </div>
   );
@@ -55,7 +57,16 @@ const About = () => {
       <div className={styles.about__title}>ABOUT</div>
       <div className={styles.about__text}>{aboutText}</div>
       <div className={styles.spacer}></div>
-      <MarvelAttributionText />
+      <div className={styles.about__title}>ARCHITECTURE</div>
+      <Image
+        className={styles.about__architecture_diagram}
+        src={architecture}
+        alt={"architecture diagrama"}
+        priority
+        height={570}
+        width={670}
+      />
+      <p className={styles.spacer}></p>
     </div>
   );
 };
