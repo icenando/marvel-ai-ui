@@ -1,7 +1,7 @@
-import { MarvelAttributionText } from "@/components/marvelAttribution";
 import styles from "../../styles/page.module.scss";
 import Image from "next/image";
 import architecture from "../../resources/architecture.png";
+import logo from "../../resources/logo.png";
 
 const About = () => {
   const aboutText = (
@@ -55,6 +55,14 @@ const About = () => {
   return (
     <div className={styles.about}>
       <div className={styles.about__title}>ABOUT</div>
+      <Image
+        className={styles.about__logo}
+        src={logo}
+        alt={"caravarvel logo"}
+        priority
+        height={500}
+        width={500}
+      />
       <div className={styles.about__text}>{aboutText}</div>
       <div className={styles.spacer}></div>
       <div className={styles.about__title}>ARCHITECTURE</div>
