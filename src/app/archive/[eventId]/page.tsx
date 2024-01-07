@@ -5,8 +5,8 @@ import { EventsResult } from "@/types/types";
 import { fetchAllEvents, fetchSingleEvent } from "@/api/db";
 import { CommentsList } from "@/components/commentsList";
 
-// If set to true, will fetch on demand. Otherwise, return 404 if path has not been generated.
-export const dynamicParams = true;
+// If set to true, will fetch ungenerated path on demand. Otherwise, return 404.
+export const dynamicParams = false;
 
 // Create links for the [eventId] dynamic path for all used events in DB
 export const generateStaticParams = async () => {
