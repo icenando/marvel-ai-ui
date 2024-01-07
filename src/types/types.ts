@@ -1,4 +1,4 @@
-export interface EventsResult {
+export type EventsResult = {
   id: number;
   title: string;
   description: string;
@@ -8,4 +8,10 @@ export interface EventsResult {
   used: boolean;
   imgUrl: string;
   revisedPrompt: string;
-}
+};
+
+export type Comment = {
+  commentId: string;
+  username: string;
+  comment: string;
+};

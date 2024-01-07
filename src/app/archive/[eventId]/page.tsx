@@ -1,8 +1,9 @@
 import { InfoBox } from "@/components/infoBox";
 import styles from "../../../styles/page.module.scss";
 import { HeroImage } from "@/components/heroImage";
-import { EventsResult } from "@/types/dynamoResponse";
+import { EventsResult } from "@/types/types";
 import { fetchAllEvents, fetchSingleEvent } from "@/api/db";
+import { CommentsList } from "@/components/commentsList";
 
 // If set to true, will fetch on demand. Otherwise, return 404 if path has not been generated.
 export const dynamicParams = true;
@@ -17,8 +18,9 @@ export const generateStaticParams = async () => {
 };
 
 const Event = async ({ params }: { params: { eventId: string } }) => {
+  const { eventId } = params;
   const marvelEvent: EventsResult = await fetchSingleEvent(
-    parseInt(params.eventId)
+    parseInt(eventId)
   ).then(res => res as EventsResult);
 
   const bucketName = process.env.BUCKET_NAME;
@@ -26,18 +28,21 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
   const { imgUrl, title, description, revisedPrompt, url } = marvelEvent;
 
   return (
-    <main className={styles.main}>
-      <HeroImage
-        imageUrl={`${bucketName}/${imgUrl}`}
-        description={description}
-      />
-      <InfoBox
-        title={title}
-        marvelDescription={description}
-        revisedDescription={revisedPrompt}
-        linkToEvent={url}
-      />
-    </main>
+    <>
+      <main className={styles.main}>
+        <HeroImage
+          imageUrl={`${bucketName}/${imgUrl}`}
+          description={description}
+        />
+        <InfoBox
+          title={title}
+          marvelDescription={description}
+          revisedDescription={revisedPrompt}
+          linkToEvent={url}
+        />
+      </main>
+      <CommentsList />
+    </>
   );
 };
 
