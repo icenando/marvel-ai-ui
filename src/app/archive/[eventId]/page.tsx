@@ -40,8 +40,8 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
           revisedDescription={revisedPrompt}
           linkToEvent={url}
         />
+        <CommentsList />
       </main>
-      <CommentsList />
     </>
   );
 };
