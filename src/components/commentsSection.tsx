@@ -4,17 +4,18 @@ import { useComment } from "@/app/api/useComments";
 import styles from "../styles/page.module.scss";
 // import { v4 as uuid } from "uuid";
 
-export const CommentsList = (): JSX.Element => {
+export const CommentsSection = (): JSX.Element => {
   const { comments, addComment, editComment, deleteComment } = useComment();
 
-  const commentsList = comments.map(comment => {
-    return (
-      <div key={comment.commentId} className={styles.commentCard}>
-        <div className={styles.commentCard__username}>{comment.username}</div>
-        <div>{comment.comment}</div>
-      </div>
-    );
-  });
+  const CommentsList = () =>
+    comments.map(comment => {
+      return (
+        <div key={comment.commentId} className={styles.commentCard}>
+          <div className={styles.commentCard__username}>{comment.username}</div>
+          <div>{comment.comment}</div>
+        </div>
+      );
+    });
 
   // TODO: this will come from the session once implemented
   const isLoggedIn = true;
@@ -39,7 +40,7 @@ export const CommentsList = (): JSX.Element => {
         </div>
         <ActionButton />
       </div>
-      {commentsList}
+      <CommentsList />
       {/* <button
         onClick={() =>
           addComment({
