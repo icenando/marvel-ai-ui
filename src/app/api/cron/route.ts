@@ -1,8 +1,8 @@
 import { revalidatePath } from "next/cache";
 
 export async function GET() {
-  revalidatePath("/", "layout");
-  revalidatePath("/archive", "page");
-  revalidatePath("/archive/[eventId]", "page");
-
+  revalidatePath("/");
+  revalidatePath("/(mainSection)/[mainSection]");
+  revalidatePath("/archive");
+  revalidatePath("/archive/[eventId]");
 }
