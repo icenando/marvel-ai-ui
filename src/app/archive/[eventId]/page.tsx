@@ -28,7 +28,12 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
     notFound();
   }
 
-  const { imgUrl, title, description, revisedPrompt, url } = marvelEvent;
+  // Redirect to NextJS's default not-found page
+  if (!used) {
+    notFound();
+  }
+
+  const bucketName = process.env.BUCKET_NAME;
 
   const bucketName = process.env.BUCKET_NAME;
 
