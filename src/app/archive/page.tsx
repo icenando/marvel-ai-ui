@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "../../styles/page.module.scss";
 import Link from "next/link";
-import { EventsResult } from "@/types/dynamoResponse";
+import { EventsResult } from "@/types/types";
 import { fetchAllEvents } from "@/api/db";
 
 const Archive = async () => {

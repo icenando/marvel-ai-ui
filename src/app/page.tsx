@@ -1,4 +1,4 @@
-import { EventsResult } from "@/types/dynamoResponse";
+import { EventsResult } from "@/types/types";
 import { fetchAllEvents } from "@/api/db";
 import { HeroImage } from "@/components/heroImage";
 import { InfoBox } from "@/components/infoBox";

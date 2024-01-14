@@ -1,4 +1,4 @@
-import { EventsResult } from "@/types/dynamoResponse";
+import { EventsResult } from "@/types/types";
 import { DynamoDB } from "aws-sdk";
 
 const db = new DynamoDB.DocumentClient();
