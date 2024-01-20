@@ -65,7 +65,7 @@ export const CommentsSection = ({
   // TODO: this will come from the session once implemented
   const [isLoggedIn, setLoggedIn] = useState(true);
   const toggleLoggedIn = () => {
-    setLoggedIn(prev => !prev);
+    setLoggedIn(!isLoggedIn);
   };
 
   const ActionButton = () => {
