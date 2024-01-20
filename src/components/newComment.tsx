@@ -31,7 +31,7 @@ export const NewCommentSection = ({ onSubmit }: NewCommentSectionProps) => {
           </div>
         </div>
         <button className={styles.comment__textArea__submitBtn} type="submit">
-          Submit
+          Post
         </button>
         <button
           className={styles.comment__textArea__resetBtn}

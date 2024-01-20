@@ -62,7 +62,7 @@ export const CommentsSection = (): JSX.Element => {
   };
 
   const ActionButton = () => {
-    const actionBtnText = isLoggedIn ? "SIGN OUT" : "SIGN IN TO COMMENT";
+    const actionBtnText = isLoggedIn ? "SIGN OUT" : "SIGN IN TO POST";
     const actionBtnStyle = isLoggedIn
       ? styles.commentsList__header__logout_button
       : styles.commentsList__header__login_button;
@@ -83,7 +83,7 @@ export const CommentsSection = (): JSX.Element => {
         <ActionButton />
       </div>
       <CommentsList />
-      <NewCommentSection onSubmit={onSubmit} />
+      {isLoggedIn && <NewCommentSection onSubmit={onSubmit} />}
     </div>
   );
 };

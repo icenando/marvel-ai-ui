@@ -36,7 +36,7 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
   return (
     <>
       <main className={styles.main}>
-        {/* <HeroImage
+        <HeroImage
           imageUrl={`${bucketName}/${imgUrl}`}
           description={description}
         />
@@ -45,7 +45,7 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
           marvelDescription={description}
           revisedDescription={revisedPrompt}
           linkToEvent={url}
-        /> */}
+        />
         <CommentsSection />
       </main>
     </>

@@ -31,6 +31,10 @@
 
   button {
     cursor: pointer;
+    border: none;
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
   }
 
   .hero_image {
@@ -186,20 +190,12 @@
       }
 
       &__submitBtn {
-        cursor: pointer;
         background-color: green;
-        width: 80px;
-        height: 50px;
-        border-radius: 10px;
         margin-right: 5px;
       }
 
       &__resetBtn {
-        cursor: pointer;
         background-color: red;
-        width: 80px;
-        height: 50px;
-        border-radius: 10px;
       }
     }
   }
