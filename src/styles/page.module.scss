@@ -23,7 +23,8 @@
   background-color: #404040;
   padding: 50px 0px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 1fr);
   justify-content: space-evenly;
   flex-wrap: wrap;
 
@@ -38,8 +39,16 @@
   }
 
   .hero_image {
+    align-self: center;
+    grid-column: 1;
     border: gray solid;
     border-width: 1px;
+  }
+
+  &__rightSideColumn {
+    grid-column: 2;
+    overflow-y: auto;
+    max-height: 100vh;
   }
 
   .info_box {
@@ -77,10 +86,16 @@
       justify-content: space-between;
       margin-top: auto;
     }
+
+    .scrollDownToSeeComments {
+      text-align: end;
+      font-size: 24px;
+    }
   }
 
   .commentsList {
-    min-width: 750px;
+    grid-column: 2;
+    max-width: 750px;
     border: white solid;
     border-radius: 10px;
     margin: 5px;
@@ -159,6 +174,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr) auto;
     grid-column-gap: 20px;
+    width: 100%;
 
     &__container {
       display: flex;
@@ -167,10 +183,11 @@
 
     &__textArea__container {
       position: relative;
+      width: 100%;
     }
 
     &__textArea {
-      min-width: 60vmin;
+      width: 97%;
       height: 100px;
       background-color: white;
       color: black;
@@ -191,7 +208,7 @@
 
       &__submitBtn {
         background-color: green;
-        margin-right: 5px;
+        margin: 0 5px 0 5px;
       }
 
       &__resetBtn {
@@ -281,6 +298,16 @@
   &__email {
     font-size: 20px;
     text-align: center;
+  }
+}
+
+@media (max-width: 1480px) {
+  .main {
+    display: flex;
+  }
+
+  .scrollDownToSeeComments {
+    display: none;
   }
 }
 

@@ -40,13 +40,15 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
           imageUrl={`${bucketName}/${imgUrl}`}
           description={description}
         />
-        <InfoBox
-          title={title}
-          marvelDescription={description}
-          revisedDescription={revisedPrompt}
-          linkToEvent={url}
-        />
-        <CommentsSection />
+        <div className={styles.main__rightSideColumn}>
+          <InfoBox
+            title={title}
+            marvelDescription={description}
+            revisedDescription={revisedPrompt}
+            linkToEvent={url}
+          />
+          <CommentsSection />
+        </div>
       </main>
     </>
   );

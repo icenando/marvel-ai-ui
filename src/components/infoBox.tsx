@@ -33,6 +33,7 @@ export const InfoBox = ({
         SEE EVENT AT MARVEL.COM
       </a>
       <MarvelAttributionText />
+      <div className={styles.scrollDownToSeeComments}>⬇ Scroll down to see comments</div>
     </div>
   );
 };
