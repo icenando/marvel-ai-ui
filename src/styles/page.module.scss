@@ -150,6 +150,59 @@
       }
     }
   }
+
+  .comment {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) auto;
+    grid-column-gap: 20px;
+
+    &__container {
+      display: flex;
+      align-items: center;
+    }
+
+    &__textArea__container {
+      position: relative;
+    }
+
+    &__textArea {
+      min-width: 60vmin;
+      height: 100px;
+      background-color: white;
+      color: black;
+      margin: 10px 10px;
+      padding: 10px 10px 0 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+
+      &__characterCount {
+        position: absolute;
+        bottom: 18px;
+        right: 15px;
+        padding: 0 5px;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      &__submitBtn {
+        cursor: pointer;
+        background-color: green;
+        width: 80px;
+        height: 50px;
+        border-radius: 10px;
+        margin-right: 5px;
+      }
+
+      &__resetBtn {
+        cursor: pointer;
+        background-color: red;
+        width: 80px;
+        height: 50px;
+        border-radius: 10px;
+      }
+    }
+  }
 }
 
 .thumbs_section {

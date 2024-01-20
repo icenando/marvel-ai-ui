@@ -6,11 +6,13 @@ import { Comment } from "@/types/types";
 export const useComment = () => {
   const [comments, setComments] = useState<Comment[]>([
     {
+      userId: "1",
       commentId: "1234",
       username: "Nando",
       comment: "This painting sucks",
     },
     {
+      userId: "2",
       commentId: "2345",
       username: "test",
       comment: "No, it doesn't",

@@ -11,6 +11,7 @@ export type EventsResult = {
 };
 
 export type Comment = {
+  userId: string;
   commentId: string;
   username: string;
   comment: string;

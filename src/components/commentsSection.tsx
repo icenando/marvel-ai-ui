@@ -3,10 +3,29 @@
 import { useComment } from "@/app/api/useComments";
 import styles from "../styles/page.module.scss";
 import { useState } from "react";
-// import { v4 as uuid } from "uuid";
+import { NewCommentSection } from "./newComment";
+import { v4 as uuid } from "uuid";
+import { faker } from "@faker-js/faker";
 
 export const CommentsSection = (): JSX.Element => {
+  // TODO: this will come from the signin context
+  const username = faker.internet.userName();
+  const userId = faker.string.uuid();
+
   const { comments, addComment, editComment, deleteComment } = useComment();
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const comment = formData.get("comment") as string;
+    const commentId = `${userId}_${uuid()}`;
+    addComment({
+      commentId,
+      comment,
+      userId,
+      username,
+    });
+  };
 
   const CommentsList = () =>
     comments.length ? (
@@ -64,6 +83,7 @@ export const CommentsSection = (): JSX.Element => {
         <ActionButton />
       </div>
       <CommentsList />
+      <NewCommentSection onSubmit={onSubmit} />
     </div>
   );
 };
