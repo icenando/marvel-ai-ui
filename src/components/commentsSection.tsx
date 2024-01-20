@@ -2,6 +2,7 @@
 
 import { useComment } from "@/app/api/useComments";
 import styles from "../styles/page.module.scss";
+import { useState } from "react";
 // import { v4 as uuid } from "uuid";
 
 export const CommentsSection = (): JSX.Element => {
@@ -12,22 +13,36 @@ export const CommentsSection = (): JSX.Element => {
       return (
         <div key={comment.commentId} className={styles.commentCard}>
           <div className={styles.commentCard__username}>{comment.username}</div>
-          <div>{comment.comment}</div>
+          <div className={styles.commentCard__options}>
+            <div className={styles.commentCard__comment__edit}>edit</div>
+            <div
+              className={styles.commentCard__comment__delete}
+              id={comment.commentId}
+              onClick={event => deleteComment(event.currentTarget.id)}
+            >
+              delete
+            </div>
+          </div>
+          <div className={styles.commentCard__comment}>{comment.comment}</div>
         </div>
       );
     });
 
   // TODO: this will come from the session once implemented
-  const isLoggedIn = true;
+  const [isLoggedIn, setLoggedIn] = useState(true);
+  const toggleLoggedIn = () => {
+    setLoggedIn(prev => !prev);
+  };
 
   const ActionButton = () => {
-    return isLoggedIn ? (
-      <button className={styles.commentsList__header__logout_button}>
-        SIGN OUT
-      </button>
-    ) : (
-      <button className={styles.commentsList__header__login_button}>
-        SIGN IN TO COMMENT
+    const actionBtnText = isLoggedIn ? "SIGN OUT" : "SIGN IN TO COMMENT";
+    const actionBtnStyle = isLoggedIn
+      ? styles.commentsList__header__logout_button
+      : styles.commentsList__header__login_button;
+
+    return (
+      <button className={actionBtnStyle} onClick={() => toggleLoggedIn()}>
+        {actionBtnText}
       </button>
     );
   };
