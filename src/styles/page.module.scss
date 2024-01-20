@@ -24,7 +24,7 @@
   padding: 50px 0px;
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-evenly;
   flex-wrap: wrap;
 
@@ -39,7 +39,7 @@
   }
 
   .hero_image {
-    align-self: center;
+    justify-self: center;
     grid-column: 1;
     border: gray solid;
     border-width: 1px;

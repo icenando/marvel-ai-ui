@@ -36,7 +36,6 @@ export const CommentsSection = (): JSX.Element => {
               {comment.username}
             </div>
             <div className={styles.commentCard__options}>
-              <div className={styles.commentCard__comment__edit}>edit</div>
               <div
                 className={styles.commentCard__comment__delete}
                 id={comment.commentId}
