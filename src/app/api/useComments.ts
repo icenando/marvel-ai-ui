@@ -6,12 +6,14 @@ import { Comment } from "@/types/types";
 export const useComment = () => {
   const [comments, setComments] = useState<Comment[]>([
     {
+      eventId: "329",
       userId: "1",
       commentId: "1234",
       username: "Nando",
       comment: "This painting sucks",
     },
     {
+      eventId: "287",
       userId: "2",
       commentId: "2345",
       username: "test",
@@ -23,20 +25,24 @@ export const useComment = () => {
     setComments([...comments, comment]);
   };
 
-  const editComment = (newComment: Comment) => {
-    const commentIdx = comments.findIndex(comment => {
-      comment.comment = newComment.comment;
-    });
+  // const editComment = (newComment: Comment) => {
+  //   const commentIdx = comments.findIndex(comment => {
+  //     comment.comment = newComment.comment;
+  //   });
 
-    const commentsState = comments;
-    commentsState[commentIdx].comment = newComment.comment;
+  //   const commentsState = comments;
+  //   commentsState[commentIdx].comment = newComment.comment;
 
-    setComments(commentsState);
-  };
+  //   setComments(commentsState);
+  // };
 
   const deleteComment = (id: string) => {
     setComments(comments.filter(({ commentId }) => commentId !== id));
   };
 
-  return { comments, addComment, editComment, deleteComment };
+  const getCommentsForEvent = (eventId: string) => {
+    return comments.filter(event => event.eventId === eventId);
+  };
+
+  return { comments, addComment, deleteComment, getCommentsForEvent };
 };

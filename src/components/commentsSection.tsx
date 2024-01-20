@@ -7,12 +7,19 @@ import { NewCommentSection } from "./newComment";
 import { v4 as uuid } from "uuid";
 import { faker } from "@faker-js/faker";
 
-export const CommentsSection = (): JSX.Element => {
+type CommentsSectionProps = {
+  eventId: string;
+};
+export const CommentsSection = ({
+  eventId,
+}: CommentsSectionProps): JSX.Element => {
   // TODO: this will come from the signin context
   const username = faker.internet.userName();
   const userId = faker.string.uuid();
 
-  const { comments, addComment, editComment, deleteComment } = useComment();
+  const { addComment, deleteComment, getCommentsForEvent } = useComment();
+
+  const comments = getCommentsForEvent(eventId);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,6 +27,7 @@ export const CommentsSection = (): JSX.Element => {
     const comment = formData.get("comment") as string;
     const commentId = `${userId}_${uuid()}`;
     addComment({
+      eventId,
       commentId,
       comment,
       userId,

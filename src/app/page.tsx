@@ -12,7 +12,7 @@ export default async function Home() {
 
   const todaysImage = marvelEvents.reverse()[0];
 
-  const { imgUrl, title, description, revisedPrompt, url } = todaysImage;
+  const { id, imgUrl, title, description, revisedPrompt, url } = todaysImage;
 
   const bucketName = process.env.BUCKET_NAME;
 
@@ -30,7 +30,7 @@ export default async function Home() {
             revisedDescription={revisedPrompt}
             linkToEvent={url}
           />
-          <CommentsSection />
+          <CommentsSection eventId={id.toString()} />
         </div>
       </main>
     </>

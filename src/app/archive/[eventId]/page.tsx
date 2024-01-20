@@ -3,8 +3,8 @@ import styles from "../../../styles/page.module.scss";
 import { HeroImage } from "@/components/heroImage";
 import { EventsResult } from "@/types/types";
 import { fetchAllEvents, fetchSingleEvent } from "@/api/db";
-import { CommentsSection } from "@/components/commentsSection";
 import { notFound } from "next/navigation";
+import { CommentsSection } from "@/components/commentsSection";
 
 // If set to true, will fetch ungenerated path on demand. Otherwise, return 404.
 export const dynamicParams = true;
@@ -46,7 +46,7 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
             revisedDescription={revisedPrompt}
             linkToEvent={url}
           />
-          <CommentsSection />
+          <CommentsSection eventId={eventId} />
         </div>
       </main>
     </>
