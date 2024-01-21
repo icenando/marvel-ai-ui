@@ -2,38 +2,20 @@
 
 import { useState } from "react";
 import styles from "../styles/page.module.scss";
-import { addCommentForEvent } from "@/api/db";
-import { faker } from "@faker-js/faker";
-import { v4 as uuid } from "uuid";
-import { revalidatePath } from "next/cache";
 
 type NewCommentSectionProps = {
   eventId: number;
+  onSubmit: (formData: FormData) => void;
 };
-export const NewCommentSection = ({ eventId }: NewCommentSectionProps) => {
-  // TODO: this will come from the signin context
-  const username = faker.internet.userName();
-  const userId = faker.string.uuid();
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const comment = formData.get("comment") as string;
-    const commentId = `${userId}_${uuid()}`;
-    addCommentForEvent({
-      eventId,
-      commentId,
-      comment,
-      userId,
-      username,
-    });
-  };
-
+export const NewCommentSection = ({
+  eventId,
+  onSubmit,
+}: NewCommentSectionProps) => {
   const maxChars = 200;
   const [charsEntered, setCharsEntered] = useState("");
   return (
     <form
-      onSubmit={e => {
+      action={e => {
         onSubmit(e);
         setCharsEntered("");
       }}

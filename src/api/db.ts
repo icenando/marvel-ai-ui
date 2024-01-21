@@ -1,6 +1,5 @@
 import { Comment, EventsResult } from "@/types/types";
 import { DynamoDB } from "aws-sdk";
-import { revalidatePath } from "next/cache";
 
 const eventsTable = process.env.EVENTS_TABLE;
 const commentsTable = process.env.COMMENTS_TABLE;
@@ -86,6 +85,7 @@ export const fetchSingleEvent = async (
 
 // COMMENTS
 // TODO: DeleteComment
+
 export const fetchCommentsForEvent = async (
   eventId: number
 ): Promise<void | Comment[]> => {
@@ -147,6 +147,4 @@ export const addCommentForEvent = async (comment: Comment) => {
       }
     }
   ).promise();
-  revalidatePath(`/archive/${comment.eventId}`);
-  // revalidatePath("/");
 };
