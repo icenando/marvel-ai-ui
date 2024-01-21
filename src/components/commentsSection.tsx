@@ -21,7 +21,7 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
   // TODO: this will come from the signin context
   const username = (session?.user?.name as string) || "";
   const userId = session?.user?.email || "";
-  const profilePicture = session?.user?.image;
+  const profilePicture = session?.user?.image || undefined;
 
   const onSubmit = async (formData: FormData) => {
     "use server";
@@ -34,6 +34,7 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
       comment,
       userId,
       username,
+      profilePicture,
     });
 
     revalidatePath(`/archive/${eventId}`);
@@ -62,7 +63,11 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         <ActionButton session={session as Session} />
       </div>
       {session && <NewCommentSection eventId={eventId} onSubmit={onSubmit} />}
-      <CommentsList session={session as Session} comments={comments} deleteComment={deleteComment} />
+      <CommentsList
+        session={session as Session}
+        comments={comments}
+        deleteComment={deleteComment}
+      />
     </div>
   );
 };

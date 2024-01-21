@@ -141,6 +141,15 @@
       grid-template-columns: repeat(2, 1fr) auto;
       grid-column-gap: 20px;
 
+      &__profilePicSection {
+        display: flex;
+
+        .profilePicture {
+          margin: 0 15px 0 0;
+          border-radius: 50px;
+        }
+      }
+
       &__username {
         font-size: 1.2em;
         font-weight: bold;
@@ -149,6 +158,7 @@
 
       &__comment {
         grid-column: 1;
+        margin: 0 0 0 50px;
       }
 
       &__options {

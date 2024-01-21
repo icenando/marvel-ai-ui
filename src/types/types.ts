@@ -13,7 +13,8 @@ export type EventsResult = {
 export type Comment = {
   eventId: number;
   userId: string;
-  commentId: string;
   username: string;
+  profilePicture?: string;
+  commentId: string;
   comment: string;
 };
