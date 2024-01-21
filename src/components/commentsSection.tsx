@@ -11,6 +11,7 @@ import { Comment } from "@/types/types";
 import { faker } from "@faker-js/faker";
 import { v4 as uuid } from "uuid";
 import { revalidatePath } from "next/cache";
+import { Session, getServerSession } from "next-auth";
 
 type CommentsSectionProps = {
   eventId: number;
@@ -43,6 +44,8 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
     revalidatePath(`/archive/${eventId}`);
   };
 
+  const session = await getServerSession();
+
   const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
 
   return (
@@ -51,7 +54,7 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         <div className={styles.commentsList__header__title}>
           COMMENTS ({comments.length})
         </div>
-        <ActionButton />
+        <ActionButton session={session as Session} />
       </div>
       <NewCommentSection eventId={eventId} onSubmit={onSubmit} />
       <CommentsList comments={comments} deleteComment={deleteComment} />
