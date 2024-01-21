@@ -17,9 +17,11 @@ type CommentsSectionProps = {
   eventId: number;
 };
 export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
+  const session = await getServerSession();
   // TODO: this will come from the signin context
-  const username = faker.internet.userName();
-  const userId = faker.string.uuid();
+  const username = (session?.user?.name as string) || "";
+  const userId = session?.user?.email || "";
+  const profilePicture = session?.user?.image;
 
   const onSubmit = async (formData: FormData) => {
     "use server";
@@ -44,8 +46,6 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
     revalidatePath(`/archive/${eventId}`);
   };
 
-  const session = await getServerSession();
-
   const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
 
   return (
@@ -54,13 +54,15 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         <div className={styles.commentsList__header__title}>
           COMMENTS ({comments.length})
         </div>
-        <div className={styles.commentsList__header__signedInInfo}>
-          Signed in ({session?.user?.name})
-        </div>
+        {session && (
+          <div className={styles.commentsList__header__signedInInfo}>
+            Signed in ({username})
+          </div>
+        )}
         <ActionButton session={session as Session} />
       </div>
-      <NewCommentSection eventId={eventId} onSubmit={onSubmit} />
-      <CommentsList comments={comments} deleteComment={deleteComment} />
+      {session && <NewCommentSection eventId={eventId} onSubmit={onSubmit} />}
+      <CommentsList session={session as Session} comments={comments} deleteComment={deleteComment} />
     </div>
   );
 };
