@@ -14,8 +14,7 @@ const nextConfig = {
     AWS_REGION: process.env.AWS_REGION,
     AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
-
-    COMMENTS_TABLE: process.env.COMMENTS_TABLE,
+    COMMENTS_TABLE: process.env.NEXT_PUBLIC_COMMENTS_TABLE,
   },
 };
 
