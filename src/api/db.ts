@@ -135,13 +135,12 @@ export const addCommentForEvent = async (comment: Comment) => {
       TableName: "Comments",
       Item: params,
     },
-    (err, data) => {
+    err => {
       if (err) {
         console.error(err);
         throw err;
       } else {
-        console.info("INSERTED COMMENT:");
-        console.info(JSON.stringify(data, null, 2));
+        console.info("INSERTED COMMENT");
       }
     }
   ).promise();
@@ -168,9 +167,8 @@ export const deleteCommentById = async (eventId: number, commentId: string) => {
   };
 
   try {
-    const data = await db.delete(params).promise();
-    console.info("DELETED COMMENT:");
-    console.info(JSON.stringify(data, null, 2));
+    await db.delete(params).promise();
+    console.info("DELETED COMMENT");
   } catch (err) {
     console.error(err);
     throw err;
