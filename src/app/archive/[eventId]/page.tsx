@@ -19,10 +19,10 @@ export const generateStaticParams = async () => {
 };
 
 const Event = async ({ params }: { params: { eventId: string } }) => {
-  const { eventId } = params;
-  const marvelEvent: EventsResult = await fetchSingleEvent(
-    parseInt(eventId)
-  ).then(res => res as EventsResult);
+  const eventId = parseInt(params.eventId);
+  const marvelEvent: EventsResult = await fetchSingleEvent(eventId).then(
+    res => res as EventsResult
+  );
 
   if (!marvelEvent?.imgUrl || marvelEvent?.used === undefined) {
     notFound();

@@ -1,10 +1,34 @@
+"use client";
+
 import { useState } from "react";
 import styles from "../styles/page.module.scss";
+import { addCommentForEvent } from "@/api/db";
+import { faker } from "@faker-js/faker";
+import { v4 as uuid } from "uuid";
+import { revalidatePath } from "next/cache";
 
 type NewCommentSectionProps = {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  eventId: number;
 };
-export const NewCommentSection = ({ onSubmit }: NewCommentSectionProps) => {
+export const NewCommentSection = ({ eventId }: NewCommentSectionProps) => {
+  // TODO: this will come from the signin context
+  const username = faker.internet.userName();
+  const userId = faker.string.uuid();
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const comment = formData.get("comment") as string;
+    const commentId = `${userId}_${uuid()}`;
+    addCommentForEvent({
+      eventId,
+      commentId,
+      comment,
+      userId,
+      username,
+    });
+  };
+
   const maxChars = 200;
   const [charsEntered, setCharsEntered] = useState("");
   return (

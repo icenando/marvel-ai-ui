@@ -1,85 +1,17 @@
-"use client";
-
-import { useComment } from "@/app/api/useComments";
 import styles from "../styles/page.module.scss";
-import { useState } from "react";
 import { NewCommentSection } from "./newComment";
-import { v4 as uuid } from "uuid";
-import { faker } from "@faker-js/faker";
+import { CommentsList } from "./commentsList";
+import { ActionButton } from "./actionButton";
+import { fetchCommentsForEvent } from "@/api/db";
+import { Comment } from "@/types/types";
 
 type CommentsSectionProps = {
-  eventId: string;
+  eventId: number;
 };
-export const CommentsSection = ({
+export const CommentsSection = async ({
   eventId,
-}: CommentsSectionProps): JSX.Element => {
-  // TODO: this will come from the signin context
-  const username = faker.internet.userName();
-  const userId = faker.string.uuid();
-
-  const { addComment, deleteComment, getCommentsForEvent } = useComment();
-
-  const comments = getCommentsForEvent(eventId);
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const comment = formData.get("comment") as string;
-    const commentId = `${userId}_${uuid()}`;
-    addComment({
-      eventId,
-      commentId,
-      comment,
-      userId,
-      username,
-    });
-  };
-
-  const CommentsList = () =>
-    comments.length ? (
-      comments.map(comment => {
-        return (
-          <div key={comment.commentId} className={styles.commentCard}>
-            <div className={styles.commentCard__username}>
-              {comment.username}
-            </div>
-            <div className={styles.commentCard__options}>
-              <div
-                className={styles.commentCard__comment__delete}
-                id={comment.commentId}
-                onClick={event => deleteComment(event.currentTarget.id)}
-              >
-                delete
-              </div>
-            </div>
-            <div className={styles.commentCard__comment}>{comment.comment}</div>
-          </div>
-        );
-      })
-    ) : (
-      <div className={styles.commentCard}>
-        <div className={styles.commentCard__comment}>Leave a comment</div>
-      </div>
-    );
-
-  // TODO: this will come from the session once implemented
-  const [isLoggedIn, setLoggedIn] = useState(true);
-  const toggleLoggedIn = () => {
-    setLoggedIn(!isLoggedIn);
-  };
-
-  const ActionButton = () => {
-    const actionBtnText = isLoggedIn ? "SIGN OUT" : "SIGN IN TO POST";
-    const actionBtnStyle = isLoggedIn
-      ? styles.commentsList__header__logout_button
-      : styles.commentsList__header__login_button;
-
-    return (
-      <button className={actionBtnStyle} onClick={() => toggleLoggedIn()}>
-        {actionBtnText}
-      </button>
-    );
-  };
+}: CommentsSectionProps): Promise<JSX.Element> => {
+  const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
 
   return (
     <div className={styles.commentsList}>
@@ -89,8 +21,8 @@ export const CommentsSection = ({
         </div>
         <ActionButton />
       </div>
-      <CommentsList />
-      {isLoggedIn && <NewCommentSection onSubmit={onSubmit} />}
+      <CommentsList comments={comments} />
+      {true && <NewCommentSection eventId={eventId} />}
     </div>
   );
 };

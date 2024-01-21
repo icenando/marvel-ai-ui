@@ -30,7 +30,7 @@ export default async function Home() {
             revisedDescription={revisedPrompt}
             linkToEvent={url}
           />
-          <CommentsSection eventId={id.toString()} />
+          <CommentsSection eventId={id} />
         </div>
       </main>
     </>
