@@ -84,13 +84,11 @@ export const fetchSingleEvent = async (
 };
 
 // COMMENTS
-// TODO: DeleteComment
-
 export const fetchCommentsForEvent = async (
   eventId: number
 ): Promise<void | Comment[]> => {
   if (!commentsTable) {
-    throw "Couldn't read table name from env vars";
+    throw "Couldn't read Comments table name from env vars";
   }
 
   const params = {
@@ -124,7 +122,7 @@ export const fetchCommentsForEvent = async (
 
 export const addCommentForEvent = async (comment: Comment) => {
   if (!commentsTable) {
-    throw "Couldn't read table name from env vars";
+    throw "Couldn't read Comments table name from env vars";
   }
 
   console.log("writing comment to DB. Comment: ");
@@ -147,4 +145,34 @@ export const addCommentForEvent = async (comment: Comment) => {
       }
     }
   ).promise();
+};
+
+export const deleteCommentById = async (eventId: number, commentId: string) => {
+  if (!commentsTable) {
+    throw "Couldn't read Comments table name from env vars";
+  }
+
+  console.log(
+    "deleting comment from DB. Event ID: ",
+    eventId,
+    "Comment ID: ",
+    commentId
+  );
+
+  const params = {
+    TableName: "Comments",
+    Key: {
+      eventId: eventId, // HASH key
+      commentId: commentId, // RANGE key
+    },
+  };
+
+  try {
+    const data = await db.delete(params).promise();
+    console.info("DELETED COMMENT:");
+    console.info(JSON.stringify(data, null, 2));
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 };

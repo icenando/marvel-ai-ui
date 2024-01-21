@@ -2,7 +2,11 @@ import styles from "../styles/page.module.scss";
 import { NewCommentSection } from "./newComment";
 import { CommentsList } from "./commentsList";
 import { ActionButton } from "./actionButton";
-import { addCommentForEvent, fetchCommentsForEvent } from "@/api/db";
+import {
+  addCommentForEvent,
+  deleteCommentById,
+  fetchCommentsForEvent,
+} from "@/api/db";
 import { Comment } from "@/types/types";
 import { faker } from "@faker-js/faker";
 import { v4 as uuid } from "uuid";
@@ -32,6 +36,13 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
     revalidatePath(`/archive/${eventId}`);
   };
 
+  const deleteComment = async (eventId: number, commentId: string) => {
+    "use server";
+    await deleteCommentById(eventId, commentId);
+
+    revalidatePath(`/archive/${eventId}`);
+  };
+
   const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
 
   return (
@@ -42,8 +53,8 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         </div>
         <ActionButton />
       </div>
-      <CommentsList comments={comments} />
       <NewCommentSection eventId={eventId} onSubmit={onSubmit} />
+      <CommentsList comments={comments} deleteComment={deleteComment} />
     </div>
   );
 };

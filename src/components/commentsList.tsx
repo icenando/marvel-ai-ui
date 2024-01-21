@@ -5,8 +5,9 @@ import { Comment } from "@/types/types";
 
 type CommentsListProps = {
   comments: Comment[];
+  deleteComment: (eventId: number, commentId: string) => Promise<void>;
 };
-export const CommentsList = ({ comments }: CommentsListProps) =>
+export const CommentsList = ({ comments, deleteComment }: CommentsListProps) =>
   comments.length ? (
     comments.map(comment => {
       return (
@@ -16,11 +17,7 @@ export const CommentsList = ({ comments }: CommentsListProps) =>
             <div
               className={styles.commentCard__comment__delete}
               id={comment.commentId}
-              onClick={event =>
-                console.log(
-                  `will delete ${event.currentTarget.id} once implemented`
-                )
-              }
+              onClick={() => deleteComment(comment.eventId, comment.commentId)}
             >
               delete
             </div>
