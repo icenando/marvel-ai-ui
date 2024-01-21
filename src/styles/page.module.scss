@@ -107,9 +107,14 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 5px;
+      align-items: center;
 
       &__title {
         font-size: 24px;
+      }
+
+      &__signedInInfo {
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       &__login_button {
@@ -371,6 +376,14 @@
             padding-right: 8px;
           }
         }
+      }
+    }
+
+    .commentsList__header {
+      display: contents;
+
+      &__signedInInfo {
+        margin: 5px 0 15px 0;
       }
     }
   }

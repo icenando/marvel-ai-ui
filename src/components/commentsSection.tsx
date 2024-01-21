@@ -54,6 +54,9 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         <div className={styles.commentsList__header__title}>
           COMMENTS ({comments.length})
         </div>
+        <div className={styles.commentsList__header__signedInInfo}>
+          Signed in ({session?.user?.name})
+        </div>
         <ActionButton session={session as Session} />
       </div>
       <NewCommentSection eventId={eventId} onSubmit={onSubmit} />
