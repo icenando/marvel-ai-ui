@@ -30,6 +30,8 @@ const handler = NextAuth({
 
 export { handler as GET, handler as POST };
 
-export const SignIn = () => {
+const SignIn = () => {
   return <div>hello</div>;
 };
+
+export default SignIn;
