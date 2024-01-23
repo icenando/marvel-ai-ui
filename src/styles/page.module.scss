@@ -19,6 +19,21 @@
   }
 }
 
+.notFound {
+  &__container {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 28px;
+    padding: 30px 0 20px 0;
+  }
+
+  &__img {
+    border: #d9d9d9 solid;
+  }
+}
+
 .main {
   background-color: #404040;
   padding: 50px 0px;
@@ -347,6 +362,19 @@
 
     a {
       margin: 0 10px;
+    }
+  }
+
+  .notFound {
+    &__title {
+      font-size: 28px;
+      padding: 30px 0 20px 0;
+    }
+
+    &__img {
+      object-fit: contain;
+      height: 100vmin;
+      width: auto;
     }
   }
 
