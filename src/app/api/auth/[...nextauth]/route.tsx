@@ -23,6 +23,13 @@ const handler = NextAuth({
       return session;
     },
   },
+  theme: {
+    logo: "https://dall-e-images-bucket.s3.eu-west-2.amazonaws.com/resources/logo.png",
+  },
 });
 
 export { handler as GET, handler as POST };
+
+export const SignIn = () => {
+  return <div>hello</div>;
+};
