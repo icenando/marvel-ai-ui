@@ -5,6 +5,7 @@ import styles from "../styles/page.module.scss";
 import { Comment } from "@/types/types";
 import Image from "next/image";
 import incognito from "../resources/incognito.png";
+import moment from "moment";
 
 type CommentsListProps = {
   session: Session;
@@ -32,6 +33,9 @@ export const CommentsList = ({
           alt="user profile picture"
         />
         <div className={styles.commentCard__username}>{username}</div>
+        <div className={styles.commentCard__timeSince}>
+          {moment(comment.dateUpdated).fromNow()}
+        </div>
       </div>
     );
   };

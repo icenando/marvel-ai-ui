@@ -120,7 +120,7 @@ export const fetchCommentsForEvent = async (
   });
 };
 
-export const addCommentForEvent = async (comment: Comment) => {
+export const addCommentForEvent = async (comment: Partial<Comment>) => {
   if (!commentsTable) {
     throw "Couldn't read Comments table name from env vars";
   }

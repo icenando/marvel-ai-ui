@@ -17,4 +17,5 @@ export type Comment = {
   profilePicture?: string;
   commentId: string;
   comment: string;
+  dateUpdated: string;
 };
