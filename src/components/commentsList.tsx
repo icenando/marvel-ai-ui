@@ -20,6 +20,7 @@ export const CommentsList = ({
   type ProfilePicProps = {
     comment: Comment;
   };
+
   const ProfilePic = ({ comment }: ProfilePicProps) => {
     const { profilePicture, username } = comment;
 
@@ -42,10 +43,12 @@ export const CommentsList = ({
 
   return comments.length ? (
     comments.map(comment => {
+      const isCommentAuthor = session?.user?.email === comment.userId;
+
       return (
         <div key={comment.commentId} className={styles.commentCard}>
           <ProfilePic comment={comment} />
-          {session?.user?.email === comment.userId && (
+          {isCommentAuthor && (
             <div className={styles.commentCard__options}>
               <div
                 className={styles.commentCard__comment__delete}
