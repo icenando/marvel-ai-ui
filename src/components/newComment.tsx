@@ -44,7 +44,7 @@ export const NewCommentSection = ({
           type="reset"
           onClick={() => setCharsEntered("")}
         >
-          Reset
+          Clear
         </button>
       </div>
     </form>

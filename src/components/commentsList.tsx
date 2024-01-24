@@ -64,7 +64,7 @@ export const CommentsList = ({
     })
   ) : (
     <div className={styles.commentCard}>
-      <div className={styles.commentCard__comment}>Leave a comment</div>
+      <div className={styles.commentCard__comment}>No comments</div>
     </div>
   );
 };

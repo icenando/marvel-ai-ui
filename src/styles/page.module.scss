@@ -134,7 +134,7 @@
 
       &__login_button {
         padding: 10px;
-        width: 170px;
+        width: 130px;
         background-color: green;
         border-radius: 15px;
         border: none;
@@ -142,7 +142,7 @@
 
       &__logout_button {
         padding: 10px;
-        width: 170px;
+        width: 130px;
         background-color: red;
         border-radius: 15px;
         border: none;
@@ -180,7 +180,7 @@
 
       &__comment {
         grid-column: 1;
-        margin: 0 0 0 50px;
+        margin-left: 50px;
       }
 
       &__options {
@@ -228,7 +228,7 @@
       height: 100px;
       background-color: white;
       color: black;
-      margin: 10px 10px;
+      margin: 10px 0;
       padding: 10px 10px 0 10px;
       border-radius: 10px;
       font-size: 16px;
@@ -238,7 +238,7 @@
         position: absolute;
         bottom: 18px;
         right: 15px;
-        padding: 0 5px;
+        padding: 0 10px;
         font-size: 12px;
         font-family: Arial, Helvetica, sans-serif;
       }
@@ -424,10 +424,22 @@
     }
 
     .commentsList__header {
-      display: contents;
+      display: grid;
+      grid-template-columns: 6fr 1fr;
 
       &__signedInInfo {
+        grid-column: 1;
         margin: 5px 0 15px 0;
+      }
+
+      &__login_button {
+        grid-row: 1;
+        grid-column: 2;
+      }
+
+      &__logout_button {
+        grid-row: 1;
+        grid-column: 2;
       }
     }
   }
