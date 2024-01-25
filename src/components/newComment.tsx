@@ -4,11 +4,9 @@ import { useState } from "react";
 import styles from "../styles/page.module.scss";
 
 type NewCommentSectionProps = {
-  eventId: number;
   onSubmit: (formData: FormData) => void;
 };
 export const NewCommentSection = ({
-  eventId,
   onSubmit,
 }: NewCommentSectionProps) => {
   const maxChars = 200;

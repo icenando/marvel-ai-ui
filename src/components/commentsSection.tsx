@@ -60,7 +60,7 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         )}
         <ActionButton session={session as Session} />
       </div>
-      {session && <NewCommentSection eventId={eventId} onSubmit={onSubmit} />}
+      {session && <NewCommentSection onSubmit={onSubmit} />}
       <CommentsList
         session={session as Session}
         comments={comments}
