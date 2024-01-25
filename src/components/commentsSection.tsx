@@ -8,7 +8,6 @@ import {
   fetchCommentsForEvent,
 } from "@/api/db";
 import { Comment } from "@/types/types";
-import { faker } from "@faker-js/faker";
 import { v4 as uuid } from "uuid";
 import { revalidatePath } from "next/cache";
 import { Session, getServerSession } from "next-auth";
@@ -18,7 +17,6 @@ type CommentsSectionProps = {
 };
 export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
   const session = await getServerSession();
-  // TODO: this will come from the signin context
   const username = (session?.user?.name as string) || "";
   const userId = session?.user?.email || "";
   const profilePicture = session?.user?.image || undefined;
