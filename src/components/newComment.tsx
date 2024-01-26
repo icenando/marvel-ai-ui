@@ -2,20 +2,22 @@
 
 import { useState } from "react";
 import styles from "../styles/page.module.scss";
+import PostButtons from "./postButtons";
 
 type NewCommentSectionProps = {
   onSubmit: (formData: FormData) => void;
 };
-export const NewCommentSection = ({
-  onSubmit,
-}: NewCommentSectionProps) => {
+export const NewCommentSection = ({ onSubmit }: NewCommentSectionProps) => {
   const maxChars = 200;
   const [charsEntered, setCharsEntered] = useState("");
+  const reset = () => {
+    setCharsEntered("");
+  };
   return (
     <form
       action={e => {
         onSubmit(e);
-        setCharsEntered("");
+        reset();
       }}
     >
       <div className={styles.comment__container}>
@@ -34,16 +36,7 @@ export const NewCommentSection = ({
             {charsEntered.length} / {maxChars}
           </div>
         </div>
-        <button className={styles.comment__textArea__submitBtn} type="submit">
-          Post
-        </button>
-        <button
-          className={styles.comment__textArea__resetBtn}
-          type="reset"
-          onClick={() => setCharsEntered("")}
-        >
-          Clear
-        </button>
+        <PostButtons reset={reset} />
       </div>
     </form>
   );
