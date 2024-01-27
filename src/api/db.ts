@@ -1,5 +1,6 @@
 import { Comment, EventsResult } from "@/types/types";
 import { DynamoDB } from "aws-sdk";
+import { revalidatePath } from "next/cache";
 
 const eventsTable = process.env.EVENTS_TABLE;
 const commentsTable = process.env.COMMENTS_TABLE;
@@ -111,8 +112,8 @@ export const fetchCommentsForEvent = async (
         reject(err);
       } else {
         console.log(
-          "fetchCommentsForEvent query succeeded. Comments:",
-          JSON.stringify(data.Items, null, 2)
+          "fetchCommentsForEvent query succeeded. Comments:"
+          // JSON.stringify(data.Items, null, 2)
         );
         resolve(data.Items! as Comment[]);
       }
@@ -129,6 +130,12 @@ export const addCommentForEvent = async (comment: Partial<Comment>) => {
 
   const dateUpdated = new Date().toISOString();
   const params = { ...comment, dateUpdated };
+
+  const passedModeration = await moderateComment(comment.comment as string);
+
+  if (!passedModeration) {
+    return "Failed moderation";
+  }
 
   db.put(
     {
@@ -173,4 +180,11 @@ export const deleteCommentById = async (eventId: number, commentId: string) => {
     console.error(err);
     throw err;
   }
+};
+
+// MODERATION
+export const moderateComment = async (comment: string): Promise<boolean> => {
+  // TODO: send to ChatGPT
+  // Return pass or failed
+  return true;
 };

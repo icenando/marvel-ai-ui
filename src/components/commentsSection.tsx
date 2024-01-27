@@ -2,11 +2,7 @@ import styles from "../styles/page.module.scss";
 import { NewCommentSection } from "./newComment";
 import { CommentsList } from "./commentsList";
 import { ActionButton } from "./actionButton";
-import {
-  addCommentForEvent,
-  deleteCommentById,
-  fetchCommentsForEvent,
-} from "@/api/db";
+import { deleteCommentById, fetchCommentsForEvent } from "@/api/db";
 import { Comment } from "@/types/types";
 import { v4 as uuid } from "uuid";
 import { revalidatePath } from "next/cache";
@@ -17,26 +13,11 @@ type CommentsSectionProps = {
 };
 export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
   const session = await getServerSession();
+
   const username = (session?.user?.name as string) || "";
   const userId = session?.user?.email || "";
-  const profilePicture = session?.user?.image || undefined;
-
-  const onSubmit = async (formData: FormData) => {
-    "use server";
-    const comment = formData.get("comment") as string;
-    const commentId = `${userId}_${uuid()}`;
-    console.log("hello");
-    await addCommentForEvent({
-      eventId,
-      commentId,
-      comment,
-      userId,
-      username,
-      profilePicture,
-    });
-
-    revalidatePath(`/archive/${eventId}`);
-  };
+  const profilePicture = session?.user?.image || "";
+  const commentId = `${userId}_${uuid()}`;
 
   const deleteComment = async (eventId: number, commentId: string) => {
     "use server";
@@ -60,7 +41,14 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         )}
         <ActionButton session={session as Session} />
       </div>
-      {session && <NewCommentSection onSubmit={onSubmit} />}
+      {session && (
+        <NewCommentSection
+          userId={userId}
+          eventId={eventId}
+          username={username}
+          profilePicture={profilePicture}
+        />
+      )}
       <CommentsList
         session={session as Session}
         comments={comments}
