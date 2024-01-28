@@ -1,6 +1,5 @@
 import styles from "../styles/page.module.scss";
 import { NewCommentSection } from "./newComment";
-import { CommentsList } from "./commentsList";
 import { ActionButton } from "./actionButton";
 import {
   addCommentForEvent,
@@ -11,6 +10,7 @@ import { Comment } from "@/types/types";
 import { v4 as uuid } from "uuid";
 import { revalidatePath } from "next/cache";
 import { Session, getServerSession } from "next-auth";
+import { CommentsList } from "./commentsList";
 
 type CommentsSectionProps = {
   eventId: number;
