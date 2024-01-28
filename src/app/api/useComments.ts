@@ -10,20 +10,24 @@ export const useComment = () => {
     setComments([...comments, comment]);
   };
 
-  const editComment = (newComment: Comment) => {
-    const commentIdx = comments.findIndex(comment => {
-      comment.comment = newComment.comment;
-    });
+  // const editComment = (newComment: Comment) => {
+  //   const commentIdx = comments.findIndex(comment => {
+  //     comment.comment = newComment.comment;
+  //   });
 
-    const commentsState = comments;
-    commentsState[commentIdx].comment = newComment.comment;
+  //   const commentsState = comments;
+  //   commentsState[commentIdx].comment = newComment.comment;
 
-    setComments(commentsState);
-  };
+  //   setComments(commentsState);
+  // };
 
   const deleteComment = (id: string) => {
     setComments(comments.filter(({ commentId }) => commentId !== id));
   };
 
-  return { comments, addComment, editComment, deleteComment };
+  const getCommentsForEvent = (eventId: string) => {
+    return comments.filter(event => event.eventId === eventId);
+  };
+
+  return { comments, addComment, deleteComment, getCommentsForEvent };
 };
