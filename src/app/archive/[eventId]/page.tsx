@@ -4,6 +4,7 @@ import { HeroImage } from "@/components/heroImage";
 import { EventsResult } from "@/types/types";
 import { fetchAllEvents, fetchSingleEvent } from "@/api/db";
 import { notFound } from "next/navigation";
+import { CommentsSection } from "@/components/commentsSection";
 
 // If set to true, will fetch ungenerated path on demand. Otherwise, return 404.
 export const dynamicParams = true;
@@ -18,32 +19,37 @@ export const generateStaticParams = async () => {
 };
 
 const Event = async ({ params }: { params: { eventId: string } }) => {
-  const marvelEvent: EventsResult = await fetchSingleEvent(
-    parseInt(params.eventId)
-  ).then(res => res as EventsResult);
+  const eventId = parseInt(params.eventId);
+  const marvelEvent: EventsResult = await fetchSingleEvent(eventId).then(
+    res => res as EventsResult
+  );
 
-  const { imgUrl, title, description, revisedPrompt, url, used } = marvelEvent;
-
-  // Redirect to NextJS's default not-found page
-  if (!used) {
+  if (!marvelEvent?.imgUrl || marvelEvent?.used === undefined) {
     notFound();
   }
+
+  const { imgUrl, title, description, revisedPrompt, url } = marvelEvent;
 
   const bucketName = process.env.BUCKET_NAME;
 
   return (
-    <main className={styles.main}>
-      <HeroImage
-        imageUrl={`${bucketName}/${imgUrl}`}
-        description={description}
-      />
-      <InfoBox
-        title={title}
-        marvelDescription={description}
-        revisedDescription={revisedPrompt}
-        linkToEvent={url}
-      />
-    </main>
+    <>
+      <main className={styles.main}>
+        <HeroImage
+          imageUrl={`${bucketName}/${imgUrl}`}
+          description={description}
+        />
+        <div className={styles.main__rightSideColumn}>
+          <InfoBox
+            title={title}
+            marvelDescription={description}
+            revisedDescription={revisedPrompt}
+            linkToEvent={url}
+          />
+          <CommentsSection eventId={eventId} />
+        </div>
+      </main>
+    </>
   );
 };
 

@@ -19,19 +19,51 @@
   }
 }
 
+.notFound {
+  &__container {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 28px;
+    padding: 30px 0 20px 0;
+  }
+
+  &__img {
+    border: #d9d9d9 solid;
+  }
+}
+
 .main {
   background-color: #404040;
   padding: 50px 0px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-evenly;
   flex-wrap: wrap;
 
   height: 1vh;
 
+  button {
+    cursor: pointer;
+    border: none;
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+  }
+
   .hero_image {
+    justify-self: center;
+    grid-column: 1;
     border: gray solid;
     border-width: 1px;
+  }
+
+  &__rightSideColumn {
+    grid-column: 2;
+    overflow-y: auto;
+    max-height: 100vh;
   }
 
   .info_box {
@@ -68,6 +100,157 @@
       display: flex;
       justify-content: space-between;
       margin-top: auto;
+    }
+
+    .scrollDownToSeeComments {
+      text-align: end;
+      font-size: 24px;
+    }
+  }
+
+  .commentsList {
+    grid-column: 2;
+    max-width: 750px;
+    border: white solid;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 15px;
+    background-color: white;
+    color: black;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      align-items: center;
+
+      &__title {
+        font-size: 24px;
+      }
+
+      &__signedInInfo {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      &__login_button {
+        padding: 10px;
+        width: 130px;
+        background-color: green;
+        border-radius: 15px;
+        border: none;
+      }
+
+      &__logout_button {
+        padding: 10px;
+        width: 130px;
+        background-color: red;
+        border-radius: 15px;
+        border: none;
+      }
+    }
+
+    .commentCard {
+      padding: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+      display: grid;
+      grid-template-columns: 6fr 1fr;
+      grid-column-gap: 20px;
+
+      &__profilePicSection {
+        display: flex;
+
+        .profilePicture {
+          margin: 0 15px 0 0;
+          border-radius: 50px;
+        }
+      }
+
+      &__username {
+        font-size: 1.2em;
+        font-weight: bold;
+        grid-column: 1;
+      }
+
+      &__timeSince {
+        font-size: 12px;
+        grid-column: 1;
+        margin-left: 10px;
+        padding-top: 5px;
+      }
+
+      &__comment {
+        grid-column: 1;
+        margin-left: 50px;
+      }
+
+      &__options {
+        display: none;
+      }
+
+      &:hover {
+        background-color: #d9d9d9;
+        border-radius: 10px;
+
+        .commentCard {
+          &__options {
+            cursor: pointer;
+            display: inline-flex;
+            grid-column: 2;
+            justify-self: end;
+
+            :nth-child(1) {
+              padding-right: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .comment {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) auto;
+    grid-column-gap: 20px;
+    width: 100%;
+
+    &__container {
+      display: flex;
+      align-items: center;
+    }
+
+    &__textArea__container {
+      position: relative;
+      width: 100%;
+    }
+
+    &__textArea {
+      width: 97%;
+      height: 100px;
+      background-color: white;
+      color: black;
+      margin: 10px 0;
+      padding: 10px 10px 0 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+
+      &__characterCount {
+        position: absolute;
+        bottom: 18px;
+        right: 15px;
+        padding: 0 10px;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      &__submitBtn {
+        background-color: green;
+        margin: 0 5px 0 5px;
+      }
+
+      &__resetBtn {
+        background-color: red;
+      }
     }
   }
 }
@@ -155,6 +338,16 @@
   }
 }
 
+@media (max-width: 1480px) {
+  .main {
+    display: flex;
+  }
+
+  .scrollDownToSeeComments {
+    display: none;
+  }
+}
+
 @media (max-width: 1000px) {
   .header {
     font-size: 18px;
@@ -179,6 +372,19 @@
     }
   }
 
+  .notFound {
+    &__title {
+      font-size: 28px;
+      padding: 30px 0 20px 0;
+    }
+
+    &__img {
+      object-fit: contain;
+      height: 100vmin;
+      width: auto;
+    }
+  }
+
   .main {
     padding: 0;
 
@@ -189,7 +395,7 @@
 
       &__value {
         font-size: 16px;
-        min-height: 20px;
+        max-height: min-content;
       }
     }
 
@@ -198,6 +404,43 @@
       height: 100vmin;
       width: auto;
       border: #d9d9d9 solid;
+    }
+
+    .commentsList {
+      min-width: 100vmin;
+
+      .commentCard {
+        &__options {
+          cursor: pointer;
+          display: inline-flex;
+          grid-column: 2;
+          justify-self: end;
+
+          :nth-child(1) {
+            padding-right: 8px;
+          }
+        }
+      }
+    }
+
+    .commentsList__header {
+      display: grid;
+      grid-template-columns: 6fr 1fr;
+
+      &__signedInInfo {
+        grid-column: 1;
+        margin: 5px 0 15px 0;
+      }
+
+      &__login_button {
+        grid-row: 1;
+        grid-column: 2;
+      }
+
+      &__logout_button {
+        grid-row: 1;
+        grid-column: 2;
+      }
     }
   }
 
