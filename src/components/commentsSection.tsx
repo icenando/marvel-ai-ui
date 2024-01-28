@@ -22,7 +22,7 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
   const userId = session?.user?.email || "";
   const profilePicture = session?.user?.image || undefined;
 
-  const onSubmit = async (
+  const submitComment = async (
     _: any,
     formData: FormData
   ): Promise<"Failed moderation" | "Success"> => {
@@ -47,13 +47,6 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
     return "Success";
   };
 
-  const deleteComment = async (eventId: number, commentId: string) => {
-    "use server";
-    await deleteCommentById(eventId, commentId);
-
-    revalidatePath(`/archive/${eventId}`);
-  };
-
   const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
 
   return (
@@ -69,11 +62,10 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         )}
         <ActionButton session={session as Session} />
       </div>
-      {session && <NewCommentSection onSubmit={onSubmit} />}
+      {session && <NewCommentSection onSubmit={submitComment} />}
       <CommentsList
         session={session as Session}
         comments={comments}
-        deleteComment={deleteComment}
       />
     </div>
   );

@@ -6,16 +6,15 @@ import { Comment } from "@/types/types";
 import Image from "next/image";
 import incognito from "../resources/incognito.png";
 import moment from "moment";
+import deleteComment from "@/api/formActions";
 
 type CommentsListProps = {
   session: Session;
   comments: Comment[];
-  deleteComment: (eventId: number, commentId: string) => Promise<void>;
 };
 export const CommentsList = ({
   session,
   comments,
-  deleteComment,
 }: CommentsListProps) => {
   type ProfilePicProps = {
     comment: Comment;
