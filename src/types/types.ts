@@ -2,7 +2,7 @@ export type EventsResult = {
   id: number;
   title: string;
   description: string;
-  start: string; // String but in Date format
+  start: string;
   end: string;
   url: string;
   used: boolean;

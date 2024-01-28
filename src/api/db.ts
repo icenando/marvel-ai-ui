@@ -39,10 +39,8 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
         );
         reject(err);
       } else {
-        console.log(
-          "fetchAllEvents scan succeeded. Item:"
-          // JSON.stringify(data!.Items, null, 2)
-        );
+        console.info("fetchAllEvents scan succeeded.");
+        console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items as EventsResult[]);
       }
     });
@@ -73,10 +71,8 @@ export const fetchSingleEvent = async (
         );
         reject(err);
       } else {
-        console.log(
-          "fetchSingleEvent query succeeded. Item:"
-          // JSON.stringify(data.Items, null, 2)
-        );
+        console.info("fetchSingleEvent query succeeded.");
+        console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items![0] as EventsResult);
       }
     });
@@ -110,10 +106,8 @@ export const fetchCommentsForEvent = async (
         );
         reject(err);
       } else {
-        console.log(
-          "fetchCommentsForEvent query succeeded. Comments:",
-          JSON.stringify(data.Items, null, 2)
-        );
+        console.info("fetchCommentsForEvent query succeeded.");
+        console.debug(`Comments: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items! as Comment[]);
       }
     });
@@ -125,7 +119,7 @@ export const addCommentForEvent = async (comment: Partial<Comment>) => {
     throw "Couldn't read Comments table name from env vars";
   }
 
-  console.log("writing comment to DB. Comment: ");
+  console.info("writing comment to DB. Comment: ");
 
   const dateUpdated = new Date().toISOString();
   const params = { ...comment, dateUpdated };
@@ -151,7 +145,7 @@ export const deleteCommentById = async (eventId: number, commentId: string) => {
     throw "Couldn't read Comments table name from env vars";
   }
 
-  console.log(
+  console.info(
     "deleting comment from DB. Event ID: ",
     eventId,
     "Comment ID: ",
@@ -161,8 +155,8 @@ export const deleteCommentById = async (eventId: number, commentId: string) => {
   const params = {
     TableName: "Comments",
     Key: {
-      eventId: eventId, // HASH key
-      commentId: commentId, // RANGE key
+      eventId: eventId,
+      commentId: commentId,
     },
   };
 

@@ -25,7 +25,7 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
     "use server";
     const comment = formData.get("comment") as string;
     const commentId = `${userId}_${uuid()}`;
-    console.log("hello");
+
     await addCommentForEvent({
       eventId,
       commentId,

@@ -4,9 +4,6 @@ import { signIn, signOut } from "next-auth/react";
 import styles from "../styles/page.module.scss";
 import { Session } from "next-auth";
 
-// TODO: this will come from the session once implemented
-// const [isLoggedIn, setLoggedIn] = useState(true);
-
 type ActionButtonProps = {
   session: Session;
 };

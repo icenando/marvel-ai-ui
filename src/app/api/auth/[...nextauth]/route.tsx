@@ -15,7 +15,6 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
-      console.log(session);
       if (session && session.user && token.sub) {
         session.user.email = token.sub;
       }
