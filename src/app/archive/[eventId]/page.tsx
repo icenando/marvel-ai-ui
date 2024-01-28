@@ -29,6 +29,7 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
   }
 
   const { imgUrl, title, description, revisedPrompt, url } = marvelEvent;
+
   const bucketName = process.env.BUCKET_NAME;
 
   return (
