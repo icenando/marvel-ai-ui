@@ -168,3 +168,7 @@ export const deleteCommentById = async (eventId: number, commentId: string) => {
     throw err;
   }
 };
+
+export const moderateComment = async (comment: string): Promise<boolean> => {
+  return false;
+};

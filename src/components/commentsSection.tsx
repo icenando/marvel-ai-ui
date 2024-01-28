@@ -5,6 +5,7 @@ import {
   addCommentForEvent,
   deleteCommentById,
   fetchCommentsForEvent,
+  moderateComment,
 } from "@/api/db";
 import { Comment } from "@/types/types";
 import { v4 as uuid } from "uuid";
@@ -21,10 +22,16 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
   const userId = session?.user?.email || "";
   const profilePicture = session?.user?.image || undefined;
 
-  const onSubmit = async (formData: FormData) => {
+  const onSubmit = async (
+    _: any,
+    formData: FormData
+  ): Promise<"Failed moderation" | "Success"> => {
     "use server";
     const comment = formData.get("comment") as string;
     const commentId = `${userId}_${uuid()}`;
+
+    const passedModeration = await moderateComment(comment);
+    if (!passedModeration) return "Failed moderation";
 
     await addCommentForEvent({
       eventId,
@@ -36,6 +43,8 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
     });
 
     revalidatePath(`/archive/${eventId}`);
+
+    return "Success";
   };
 
   const deleteComment = async (eventId: number, commentId: string) => {
