@@ -40,7 +40,6 @@ export const CommentsList = ({ session, comments }: CommentsListProps) => {
   };
 
   const [formState, formAction] = useFormState(deleteComment, null);
-  console.log(formState);
 
   return comments.length ? (
     comments.map(comment => {
