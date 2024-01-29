@@ -2,12 +2,19 @@
 
 import { useFormStatus } from "react-dom";
 import styles from "../styles/page.module.scss";
+import { useEffect } from "react";
 
 type PostButtonProps = {
   reset: () => void;
+  setIsTextareaDisabled: (loading: boolean) => void;
 };
-const PostButtons = ({ reset }: PostButtonProps) => {
+const PostButtons = ({ reset, setIsTextareaDisabled }: PostButtonProps) => {
   const { pending } = useFormStatus();
+
+  useEffect(() => {
+    setIsTextareaDisabled(pending);
+  }, [pending, setIsTextareaDisabled]);
+
   return (
     <>
       <button
@@ -16,7 +23,7 @@ const PostButtons = ({ reset }: PostButtonProps) => {
         aria-disabled={pending}
         disabled={pending}
       >
-        {pending ? "Wait..." : "Post"}
+        {pending ? "..." : "Post"}
       </button>
       <button
         className={styles.comment__textArea__resetBtn}

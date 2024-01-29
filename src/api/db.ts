@@ -1,4 +1,4 @@
-import { Comment, EventsResult } from "@/types/types";
+import { Comment, EventsResult, ModerationObject } from "@/types/types";
 import { DynamoDB } from "aws-sdk";
 
 const eventsTable = process.env.EVENTS_TABLE;
@@ -40,7 +40,7 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
         reject(err);
       } else {
         console.info("fetchAllEvents scan succeeded.");
-        console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
+        // console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items as EventsResult[]);
       }
     });
@@ -72,7 +72,7 @@ export const fetchSingleEvent = async (
         reject(err);
       } else {
         console.info("fetchSingleEvent query succeeded.");
-        console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
+        // console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items![0] as EventsResult);
       }
     });
@@ -107,7 +107,7 @@ export const fetchCommentsForEvent = async (
         reject(err);
       } else {
         console.info("fetchCommentsForEvent query succeeded.");
-        console.debug(`Comments: ${JSON.stringify(data!.Items, null, 2)}`);
+        // console.debug(`Comments: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items! as Comment[]);
       }
     });
@@ -167,4 +167,34 @@ export const deleteCommentById = async (eventId: number, commentId: string) => {
     console.error(err);
     throw err;
   }
+};
+
+export const moderateComment = async (comment: string): Promise<boolean> => {
+  const moderationUrl = process.env.OPENAI_MODERATION_URL as string;
+  const bearerToken = process.env.OPENAI_SECRET;
+  const body = {
+    input: comment,
+  };
+
+  const options = {
+    method: "POST",
+    headers: new Headers({
+      "Content-type": "application/json",
+      Authorization: `bearer ${bearerToken}`,
+    }),
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(5 * 1000),
+  };
+
+  console.info("Sending comment for moderation...");
+  const resp: ModerationObject = await fetch(moderationUrl, options)
+    .then(res => res.json())
+    .catch(e => {
+      console.error(e);
+      throw e;
+    });
+
+  console.log(resp.results[0]);
+
+  return !resp.results[0].flagged;
 };

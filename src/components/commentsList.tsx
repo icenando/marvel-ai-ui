@@ -6,17 +6,15 @@ import { Comment } from "@/types/types";
 import Image from "next/image";
 import incognito from "../resources/incognito.png";
 import moment from "moment";
+import { deleteComment } from "@/api/formActions";
+import { useFormState } from "react-dom";
+import DeleteButton from "./deleteButton";
 
 type CommentsListProps = {
   session: Session;
   comments: Comment[];
-  deleteComment: (eventId: number, commentId: string) => Promise<void>;
 };
-export const CommentsList = ({
-  session,
-  comments,
-  deleteComment,
-}: CommentsListProps) => {
+export const CommentsList = ({ session, comments }: CommentsListProps) => {
   type ProfilePicProps = {
     comment: Comment;
   };
@@ -41,28 +39,22 @@ export const CommentsList = ({
     );
   };
 
+  const [formState, formAction] = useFormState(deleteComment, null);
+
   return comments.length ? (
     comments.map(comment => {
       const isCommentAuthor = session?.user?.email === comment.userId;
 
       return (
-        <div key={comment.commentId} className={styles.commentCard}>
-          <ProfilePic comment={comment} />
-          {isCommentAuthor && (
-            <div className={styles.commentCard__options}>
-              <div
-                className={styles.commentCard__comment__delete}
-                id={comment.commentId}
-                onClick={() =>
-                  deleteComment(comment.eventId, comment.commentId)
-                }
-              >
-                delete
-              </div>
-            </div>
-          )}
-          <div className={styles.commentCard__comment}>{comment.comment}</div>
-        </div>
+        <form key={comment.commentId} action={formAction}>
+          <input type="hidden" name="eventId" value={comment.eventId} />
+          <input type="hidden" name="commentId" value={comment.commentId} />
+          <div className={styles.commentCard}>
+            <ProfilePic comment={comment} />
+            {isCommentAuthor && <DeleteButton />}
+            <div className={styles.commentCard__comment}>{comment.comment}</div>
+          </div>
+        </form>
       );
     })
   ) : (
