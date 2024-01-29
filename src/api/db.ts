@@ -1,4 +1,4 @@
-import { Comment, EventsResult } from "@/types/types";
+import { Comment, EventsResult, ModerationObject } from "@/types/types";
 import { DynamoDB } from "aws-sdk";
 
 const eventsTable = process.env.EVENTS_TABLE;
@@ -170,5 +170,29 @@ export const deleteCommentById = async (eventId: number, commentId: string) => {
 };
 
 export const moderateComment = async (comment: string): Promise<boolean> => {
-  return true;
+  const moderationUrl = process.env.OPENAI_MODERATION_URL as string;
+  const bearerToken = process.env.OPENAI_SECRET;
+  const body = {
+    input: comment,
+  };
+
+  const options = {
+    method: "POST",
+    headers: new Headers({
+      "Content-type": "application/json",
+      Authorization: `bearer ${bearerToken}`,
+    }),
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(5 * 1000),
+  };
+
+  console.info("Sending comment for moderation...");
+  const resp: ModerationObject = await fetch(moderationUrl, options)
+    .then(res => res.json())
+    .catch(e => {
+      console.error(e);
+      throw e;
+    });
+
+  return !resp.results[0].flagged;
 };
