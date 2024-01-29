@@ -4,14 +4,17 @@ import { useState } from "react";
 import styles from "../styles/page.module.scss";
 import PostButtons from "./postButtons";
 import { useFormState } from "react-dom";
+import { submitComment } from "@/api/formActions";
+import { UserInfo } from "@/types/types";
 
 type NewCommentSectionProps = {
-  onSubmit: (
-    state: any,
-    formData: FormData
-  ) => Promise<"Failed moderation" | "Success">;
+  eventId: number;
+  userInfo: UserInfo;
 };
-export const NewCommentSection = ({ onSubmit }: NewCommentSectionProps) => {
+export const NewCommentSection = ({
+  eventId,
+  userInfo,
+}: NewCommentSectionProps) => {
   const maxChars = 200;
   const [charsEntered, setCharsEntered] = useState("");
 
@@ -19,10 +22,18 @@ export const NewCommentSection = ({ onSubmit }: NewCommentSectionProps) => {
     setCharsEntered("");
   };
 
-  const [state, formAction] = useFormState(onSubmit, null);
+  const [state, formAction] = useFormState(submitComment, null);
 
   return (
     <form action={formAction} onSubmit={reset}>
+      <input type="hidden" name="eventId" value={eventId} />
+      <input type="hidden" name="username" value={userInfo.username} />
+      <input type="hidden" name="userId" value={userInfo.userId} />
+      <input
+        type="hidden"
+        name="profilePicture"
+        value={userInfo.profilePicture}
+      />
       <div className={styles.comment__container}>
         <div className={styles.comment__textArea__container}>
           {state}

@@ -1,15 +1,8 @@
 import styles from "../styles/page.module.scss";
 import { NewCommentSection } from "./newComment";
 import { ActionButton } from "./actionButton";
-import {
-  addCommentForEvent,
-  deleteCommentById,
-  fetchCommentsForEvent,
-  moderateComment,
-} from "@/api/db";
-import { Comment } from "@/types/types";
-import { v4 as uuid } from "uuid";
-import { revalidatePath } from "next/cache";
+import { fetchCommentsForEvent } from "@/api/db";
+import { Comment, UserInfo } from "@/types/types";
 import { Session, getServerSession } from "next-auth";
 import { CommentsList } from "./commentsList";
 
@@ -18,33 +11,11 @@ type CommentsSectionProps = {
 };
 export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
   const session = await getServerSession();
-  const username = (session?.user?.name as string) || "";
-  const userId = session?.user?.email || "";
-  const profilePicture = session?.user?.image || undefined;
 
-  const submitComment = async (
-    _: any,
-    formData: FormData
-  ): Promise<"Failed moderation" | "Success"> => {
-    "use server";
-    const comment = formData.get("comment") as string;
-    const commentId = `${userId}_${uuid()}`;
-
-    const passedModeration = await moderateComment(comment);
-    if (!passedModeration) return "Failed moderation";
-
-    await addCommentForEvent({
-      eventId,
-      commentId,
-      comment,
-      userId,
-      username,
-      profilePicture,
-    });
-
-    revalidatePath(`/archive/${eventId}`);
-
-    return "Success";
+  const userInfo: UserInfo = {
+    username: session?.user?.name as string,
+    userId: session?.user?.email as string,
+    profilePicture: session?.user?.image || undefined,
   };
 
   const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
@@ -57,16 +28,13 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         </div>
         {session && (
           <div className={styles.commentsList__header__signedInInfo}>
-            Signed in ({username})
+            Signed in ({userInfo.username})
           </div>
         )}
         <ActionButton session={session as Session} />
       </div>
-      {session && <NewCommentSection onSubmit={submitComment} />}
-      <CommentsList
-        session={session as Session}
-        comments={comments}
-      />
+      {session && <NewCommentSection eventId={eventId} userInfo={userInfo} />}
+      <CommentsList session={session as Session} comments={comments} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { Comment } from "@/types/types";
 import Image from "next/image";
 import incognito from "../resources/incognito.png";
 import moment from "moment";
-import deleteComment from "@/api/formActions";
+import { deleteComment } from "@/api/formActions";
 import { useFormState } from "react-dom";
 import DeleteButton from "./deleteButton";
 

@@ -19,3 +19,9 @@ export type Comment = {
   comment: string;
   dateUpdated: string;
 };
+
+export type UserInfo = {
+  username: string;
+  userId: string;
+  profilePicture: string | undefined;
+};
