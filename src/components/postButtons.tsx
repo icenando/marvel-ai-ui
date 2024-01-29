@@ -2,6 +2,7 @@
 
 import { useFormStatus } from "react-dom";
 import styles from "../styles/page.module.scss";
+import { useEffect } from "react";
 
 type PostButtonProps = {
   reset: () => void;
@@ -9,7 +10,10 @@ type PostButtonProps = {
 };
 const PostButtons = ({ reset, setIsTextareaDisabled }: PostButtonProps) => {
   const { pending } = useFormStatus();
-  setIsTextareaDisabled(pending);
+
+  useEffect(() => {
+    setIsTextareaDisabled(pending);
+  }, [pending, setIsTextareaDisabled]);
 
   return (
     <>

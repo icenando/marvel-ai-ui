@@ -40,7 +40,7 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
         reject(err);
       } else {
         console.info("fetchAllEvents scan succeeded.");
-        console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
+        // console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items as EventsResult[]);
       }
     });
@@ -72,7 +72,7 @@ export const fetchSingleEvent = async (
         reject(err);
       } else {
         console.info("fetchSingleEvent query succeeded.");
-        console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
+        // console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items![0] as EventsResult);
       }
     });
@@ -107,7 +107,7 @@ export const fetchCommentsForEvent = async (
         reject(err);
       } else {
         console.info("fetchCommentsForEvent query succeeded.");
-        console.debug(`Comments: ${JSON.stringify(data!.Items, null, 2)}`);
+        // console.debug(`Comments: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items! as Comment[]);
       }
     });
@@ -193,6 +193,8 @@ export const moderateComment = async (comment: string): Promise<boolean> => {
       console.error(e);
       throw e;
     });
+
+  console.log(resp.results[0]);
 
   return !resp.results[0].flagged;
 };
