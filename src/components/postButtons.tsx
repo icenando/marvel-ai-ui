@@ -5,9 +5,11 @@ import styles from "../styles/page.module.scss";
 
 type PostButtonProps = {
   reset: () => void;
+  setIsTextareaDisabled: (loading: boolean) => void;
 };
-const PostButtons = ({ reset }: PostButtonProps) => {
+const PostButtons = ({ reset, setIsTextareaDisabled }: PostButtonProps) => {
   const { pending } = useFormStatus();
+  setIsTextareaDisabled(pending);
 
   return (
     <>
@@ -17,7 +19,7 @@ const PostButtons = ({ reset }: PostButtonProps) => {
         aria-disabled={pending}
         disabled={pending}
       >
-        {pending ? "Wait..." : "Post"}
+        {pending ? "..." : "Post"}
       </button>
       <button
         className={styles.comment__textArea__resetBtn}

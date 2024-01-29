@@ -23,6 +23,8 @@ export const NewCommentSection = ({
   };
 
   const [state, formAction] = useFormState(submitComment, null);
+  
+  const [isTextareaDisabled, setIsTextareaDisabled] = useState(false);
 
   return (
     <form action={formAction} onSubmit={reset}>
@@ -46,12 +48,16 @@ export const NewCommentSection = ({
             aria-label="comment input field"
             onChange={e => setCharsEntered(e.target.value)}
             value={charsEntered}
+            disabled={isTextareaDisabled}
           />
           <div className={styles.comment__textArea__characterCount}>
             {charsEntered.length} / {maxChars}
           </div>
         </div>
-        <PostButtons reset={reset} />
+        <PostButtons
+          reset={reset}
+          setIsTextareaDisabled={setIsTextareaDisabled}
+        />
       </div>
     </form>
   );
