@@ -3,6 +3,7 @@ import "./globals.css";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
 import { Julius_Sans_One } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Caravarvel-AI",
@@ -32,6 +33,7 @@ export default function RootLayout({
           </span>
         </header>
         {children}
+        <Analytics />
       </body>
     </html>
   );
