@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
-import { Header } from "@/components/Header";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Caravarvel-AI",

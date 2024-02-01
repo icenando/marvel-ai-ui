@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "../styles/page.module.scss";
 
-export const Header = () => {
+const Header = () => {
   return (
     <header className={styles.header}>
       <Link href={"/"}>CARAVARVEL-AI</Link>
@@ -13,3 +13,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;
