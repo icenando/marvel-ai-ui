@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
 import Header from "@/components/Header";
+import CookieConsent from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Caravarvel-AI",
@@ -28,6 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={julius.className}>
+        <CookieConsent />
         <Header />
         <SessionProvider session={session}>{children}</SessionProvider>
         <Analytics />
