@@ -1,4 +1,3 @@
-import React from "react";
 import loadingStyle from "./loading.module.scss";
 
 const Loading: React.FC = () => {
