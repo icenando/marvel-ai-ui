@@ -1,7 +1,7 @@
 import styles from "../../styles/page.module.scss";
 import Image from "next/image";
-import architecture from "../../resources/architecture.png";
-import logo from "../../resources/logo.png";
+import architecture from "../../assets/architecture.png";
+import logo from "../../assets/logo.png";
 
 const About = () => {
   const aboutText = (

@@ -4,7 +4,7 @@ import { Session } from "next-auth";
 import styles from "../styles/page.module.scss";
 import { Comment } from "@/types/types";
 import Image from "next/image";
-import incognito from "../resources/incognito.png";
+import incognito from "../assets/incognito.png";
 import moment from "moment";
 import { deleteComment } from "@/api/formActions";
 import { useFormState } from "react-dom";

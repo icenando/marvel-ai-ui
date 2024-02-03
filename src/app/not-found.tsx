@@ -1,5 +1,5 @@
 import Image from "next/image";
-import notFound from "./../resources/404.png";
+import notFound from "./../assets/404.png";
 import styles from "../styles/page.module.scss";
 
 const NotFound = () => {

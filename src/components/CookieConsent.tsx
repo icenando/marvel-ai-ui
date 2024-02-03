@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./cookieConsent.module.scss";
-import cookieImage from "../resources/cookie.png";
+import cookieImage from "../assets/cookie.png";
 import Image from "next/image";
 import { useState } from "react";
 
