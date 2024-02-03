@@ -19,9 +19,20 @@ const setCookieConsent = () => {
   document.cookie = buildCookie();
 };
 
+const hasCookieConsent = () => {
+  if (
+    document.cookie.split("; ").find(row => row.startsWith(`${cookieConsent}`))
+  )
+    return true;
+};
+
 const CookieConsent = () => {
-  const hasCookieConsent = localStorage.getItem(cookieConsent);
-  const [hideCookieBanner, setHideCookieBanner] = useState(hasCookieConsent);
+  const [hideCookieBanner, setHideCookieBanner] = useState(hasCookieConsent());
+
+  const handleAcceptCookie = () => {
+    setCookieConsent();
+    setHideCookieBanner(true);
+  };
 
   const consentText = (
     <>
@@ -33,22 +44,25 @@ const CookieConsent = () => {
       <p>Please accept to continue using the Caravarvel.</p>
     </>
   );
+
   return (
-    <div className={styles.container}>
-      <div className={styles.message__container}>
-        <Image
-          className={styles.cookieImage}
-          src={cookieImage}
-          alt="cookie consent image"
-          height={50}
-          width={50}
-        />
-        <div className={styles.message}>{consentText} </div>
-        <button className={styles.agreeButton} onClick={setCookieConsent}>
-          I understand
-        </button>
+    !hideCookieBanner && (
+      <div className={styles.container}>
+        <div className={styles.message__container}>
+          <Image
+            className={styles.cookieImage}
+            src={cookieImage}
+            alt="cookie consent image"
+            height={50}
+            width={50}
+          />
+          <div className={styles.message}>{consentText} </div>
+          <button className={styles.agreeButton} onClick={handleAcceptCookie}>
+            I understand
+          </button>
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
