@@ -37,9 +37,9 @@ const CookieConsent = () => {
   const consentText = (
     <>
       <p>
-        This site uses cookies only to keep you signed in in case you want to
-        post comments. We do not ever send your information outside of this
-        website.
+        This site uses cookies only to handle signing and and out for posting
+        comments. We never send your information outside of this website, nor
+        use it for anything else.
       </p>
       <p>Please accept to continue using the Caravarvel.</p>
     </>
