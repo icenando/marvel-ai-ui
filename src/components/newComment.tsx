@@ -5,15 +5,18 @@ import styles from "../styles/page.module.scss";
 import PostButtons from "./postButtons";
 import { useFormState } from "react-dom";
 import { submitComment } from "@/api/formActions";
-import { UserInfo } from "@/types/types";
+import { UniqueUser, UserInfo } from "@/types/types";
+import { MentionsInput, Mention } from "react-mentions";
 
 type NewCommentSectionProps = {
   eventId: number;
   userInfo: UserInfo;
+  users: UniqueUser[];
 };
 export const NewCommentSection = ({
   eventId,
   userInfo,
+  users,
 }: NewCommentSectionProps) => {
   const maxChars = 200;
   const [charsEntered, setCharsEntered] = useState("");
@@ -23,7 +26,7 @@ export const NewCommentSection = ({
   };
 
   const [state, formAction] = useFormState(submitComment, null);
-  
+
   const [isTextareaDisabled, setIsTextareaDisabled] = useState(false);
 
   return (
@@ -39,7 +42,7 @@ export const NewCommentSection = ({
       <div className={styles.comment__container}>
         <div className={styles.comment__textArea__container}>
           {state}
-          <textarea
+          {/* <textarea
             className={styles.comment__textArea}
             name="comment"
             required
@@ -49,7 +52,21 @@ export const NewCommentSection = ({
             onChange={e => setCharsEntered(e.target.value)}
             value={charsEntered}
             disabled={isTextareaDisabled}
-          />
+          /> */}
+          <MentionsInput
+            className={styles.comment__textArea}
+            placeholder={"Mention people using '@'"}
+            name="comment"
+            required
+            minLength={1}
+            maxLength={maxChars}
+            aria-label="comment input field"
+            onChange={e => setCharsEntered(e.target.value)}
+            value={charsEntered}
+            disabled={isTextareaDisabled}
+          >
+            <Mention trigger="@" data={users} />
+          </MentionsInput>
           <div className={styles.comment__textArea__characterCount}>
             {charsEntered.length} / {maxChars}
           </div>

@@ -61,3 +61,9 @@ export type ModerationObject = {
     }
   ];
 };
+
+
+export type UniqueUser = {
+  id: string;
+  display: string;
+};
