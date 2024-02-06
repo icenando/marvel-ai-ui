@@ -5,18 +5,22 @@ import { fetchCommentsForEvent } from "@/api/db";
 import { Comment, UserInfo } from "@/types/types";
 import { Session, getServerSession } from "next-auth";
 import { CommentsList } from "./commentsList";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 type CommentsSectionProps = {
   eventId: number;
 };
 export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   const userInfo: UserInfo = {
     username: session?.user?.name as string,
-    userId: session?.user?.email as string,
+    userId: session?.user?.id as string,
     profilePicture: session?.user?.image || undefined,
   };
+
+  console.log({ session });
+  console.log({ userInfo });
 
   const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
 
@@ -34,7 +38,7 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         <ActionButton session={session as Session} />
       </div>
       {session && <NewCommentSection eventId={eventId} userInfo={userInfo} />}
-      <CommentsList session={session as Session} comments={comments} />
+      <CommentsList userInfo={userInfo} comments={comments} />
     </div>
   );
 };
