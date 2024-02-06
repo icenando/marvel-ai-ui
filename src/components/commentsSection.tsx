@@ -5,7 +5,7 @@ import { fetchCommentsForEvent } from "@/api/db";
 import { Comment, UserInfo } from "@/types/types";
 import { Session, getServerSession } from "next-auth";
 import { CommentsList } from "./commentsList";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 type CommentsSectionProps = {
   eventId: number;
