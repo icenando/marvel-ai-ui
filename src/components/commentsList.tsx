@@ -2,7 +2,7 @@
 
 import { Session } from "next-auth";
 import styles from "../styles/page.module.scss";
-import { Comment, UserInfo } from "@/types/types";
+import { Comment, User } from "@/types/types";
 import Image from "next/image";
 import incognito from "../assets/incognito.png";
 import moment from "moment";
@@ -11,10 +11,13 @@ import { useFormState } from "react-dom";
 import DeleteButton from "./deleteButton";
 
 type CommentsListProps = {
-  userInfo: UserInfo;
+  user: User;
   comments: Comment[];
 };
-export const CommentsList = ({ userInfo, comments }: CommentsListProps) => {
+export const CommentsList = ({
+  user: userInfo,
+  comments,
+}: CommentsListProps) => {
   type ProfilePicProps = {
     comment: Comment;
   };

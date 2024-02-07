@@ -2,7 +2,7 @@ import styles from "../styles/page.module.scss";
 import { NewCommentSection } from "./newComment";
 import { ActionButton } from "./actionButton";
 import { fetchCommentsForEvent } from "@/api/db";
-import { Comment, UserInfo } from "@/types/types";
+import { Comment, User } from "@/types/types";
 import { Session, getServerSession } from "next-auth";
 import { CommentsList } from "./commentsList";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
@@ -13,14 +13,11 @@ type CommentsSectionProps = {
 export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
   const session = await getServerSession(authOptions);
 
-  const userInfo: UserInfo = {
+  const user: User = {
     username: session?.user?.name as string,
     userId: session?.user?.id as string,
     profilePicture: session?.user?.image || undefined,
   };
-
-  console.log({ session });
-  console.log({ userInfo });
 
   const comments = (await fetchCommentsForEvent(eventId)) as Comment[];
 
@@ -32,13 +29,13 @@ export const CommentsSection = async ({ eventId }: CommentsSectionProps) => {
         </div>
         {session && (
           <div className={styles.commentsList__header__signedInInfo}>
-            Signed in ({userInfo.username})
+            Signed in ({user.username})
           </div>
         )}
         <ActionButton session={session as Session} />
       </div>
-      {session && <NewCommentSection eventId={eventId} userInfo={userInfo} />}
-      <CommentsList userInfo={userInfo} comments={comments} />
+      {session && <NewCommentSection eventId={eventId} user={user} />}
+      <CommentsList user={user} comments={comments} />
     </div>
   );
 };
