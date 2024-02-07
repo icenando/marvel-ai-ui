@@ -1,8 +1,7 @@
 "use client";
 
-import { Session } from "next-auth";
 import styles from "../styles/page.module.scss";
-import { Comment } from "@/types/types";
+import { Comment, User } from "@/types/types";
 import Image from "next/image";
 import incognito from "../assets/incognito.png";
 import moment from "moment";
@@ -11,10 +10,10 @@ import { useFormState } from "react-dom";
 import DeleteButton from "./deleteButton";
 
 type CommentsListProps = {
-  session: Session;
+  user: User;
   comments: Comment[];
 };
-export const CommentsList = ({ session, comments }: CommentsListProps) => {
+export const CommentsList = ({ user, comments }: CommentsListProps) => {
   type ProfilePicProps = {
     comment: Comment;
   };
@@ -39,11 +38,11 @@ export const CommentsList = ({ session, comments }: CommentsListProps) => {
     );
   };
 
-  const [formState, formAction] = useFormState(deleteComment, null);
+  const [_, formAction] = useFormState(deleteComment, null);
 
   return comments.length ? (
     comments.map(comment => {
-      const isCommentAuthor = session?.user?.email === comment.userId;
+      const isCommentAuthor = user.userId === comment.userId;
 
       return (
         <form key={comment.commentId} action={formAction}>

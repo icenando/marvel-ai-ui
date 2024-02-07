@@ -20,7 +20,7 @@ export type Comment = {
   dateUpdated: string;
 };
 
-export type UserInfo = {
+export type User = {
   username: string;
   userId: string;
   profilePicture: string | undefined;
