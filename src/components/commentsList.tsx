@@ -1,6 +1,5 @@
 "use client";
 
-import { Session } from "next-auth";
 import styles from "../styles/page.module.scss";
 import { Comment, User } from "@/types/types";
 import Image from "next/image";
@@ -14,10 +13,7 @@ type CommentsListProps = {
   user: User;
   comments: Comment[];
 };
-export const CommentsList = ({
-  user: userInfo,
-  comments,
-}: CommentsListProps) => {
+export const CommentsList = ({ user, comments }: CommentsListProps) => {
   type ProfilePicProps = {
     comment: Comment;
   };
@@ -42,11 +38,11 @@ export const CommentsList = ({
     );
   };
 
-  const [formState, formAction] = useFormState(deleteComment, null);
+  const [_, formAction] = useFormState(deleteComment, null);
 
   return comments.length ? (
     comments.map(comment => {
-      const isCommentAuthor = userInfo.userId === comment.userId;
+      const isCommentAuthor = user.userId === comment.userId;
 
       return (
         <form key={comment.commentId} action={formAction}>
