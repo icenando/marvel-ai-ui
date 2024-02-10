@@ -32,7 +32,7 @@ const Archive = async () => {
     <div className={styles.archive}>
       <p className={styles.archive__title}>ARCHIVE</p>
       <div className={styles.thumbs_section}>
-        <div className={styles.thumbs_section_comming_next}>
+        <div className={styles.thumbs_section_coming_next}>
           {getTimeToNextImage()}
         </div>
         {thumbs_section}
