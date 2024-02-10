@@ -3,6 +3,7 @@ import styles from "../../styles/page.module.scss";
 import Link from "next/link";
 import { EventsResult } from "@/types/types";
 import { fetchAllEvents } from "@/api/db";
+import { getTimeToNextImage } from "@/helpers/getTimeToNextImage";
 
 const Archive = async () => {
   const marvelEvents: EventsResult[] = await fetchAllEvents().then(
@@ -30,7 +31,12 @@ const Archive = async () => {
   return (
     <div className={styles.archive}>
       <p className={styles.archive__title}>ARCHIVE</p>
-      <div className={styles.thumbs_section}>{thumbs_section}</div>
+      <div className={styles.thumbs_section}>
+        <div className={styles.thumbs_section_comming_next}>
+          {getTimeToNextImage()}
+        </div>
+        {thumbs_section}
+      </div>
     </div>
   );
 };
