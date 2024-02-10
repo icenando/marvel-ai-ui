@@ -6,6 +6,38 @@ import logo from "../../assets/logo.png";
 const About = () => {
   const aboutText = (
     <div className={styles.about__text}>
+      <div className={styles.about__title}>WHAT IF...</div>
+      <p>
+        Caravaggio, the renowned Italian painter of the early modern period, is
+        celebrated for his dramatic intensity and pioneering use of chiaroscuro.
+        But what if he had been a Marvel artist?
+      </p>
+      <p className={styles.spacer}></p>
+      <p>
+        Caravaggio-AI&apos;s collection showcases AI-generated interpretations
+        of how Caravaggio might have envisioned each of Marvel&#39;s
+        seventy-three (and counting) iconic events.
+      </p>
+      <p className={styles.spacer}></p>
+      <p>
+        With a unique fusion of his signature artistic techniques and the
+        dynamic universe of Marvel, these images provide a captivating
+        exploration of an alternate artistic reality.
+      </p>
+      <p className={styles.spacer}></p>
+      <p>
+        We update our gallery daily with a new image, inviting you to explore
+        this evolving fusion of art and storytelling. Join us daily to witness
+        the unfolding of this extraordinary artistic journey.
+      </p>
+      <p className={styles.spacer}></p>
+      <p>
+        DISCLAIMER: This is a fan project. It is{" "}
+        <i>NOT an official Marvel project nor is it endorsed by Marvel</i>.
+      </p>
+      <p className={styles.spacer}></p>
+
+      <div className={styles.about__title}>HOW DOES IT WORK</div>
       <p>
         Caravarvel-AI (Caravaggio + Marvel + AI) is a personal project that uses
         <a href="https://developer.marvel.com/" target="_blank">
@@ -47,9 +79,17 @@ const About = () => {
       </p>
       <p className={styles.spacer}></p>
       <p>
-        DISCLAIMER: This is a fan project. It is{" "}
-        <i>NOT an official Marvel project nor is it endorsed by Marvel</i>.
+        Lastly, in the frontend, when you post a comment it gets sent to ChatGPT
+        for moderation. Comments are moderated based on{" "}
+        <a
+          href="https://platform.openai.com/docs/guides/moderation"
+          target="_blank"
+        >
+          OpenAI&apos;s usage policies
+        </a>
+        .
       </p>
+      <p className={styles.spacer}></p>
     </div>
   );
 
@@ -65,7 +105,6 @@ const About = () => {
         width={500}
       />
       <div className={styles.about__text}>{aboutText}</div>
-      <div className={styles.spacer}></div>
       <div className={styles.about__title}>ARCHITECTURE</div>
       <Image
         className={styles.about__architecture_diagram}
