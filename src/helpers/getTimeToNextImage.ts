@@ -3,7 +3,7 @@
 import moment from "moment";
 
 export const getTimeToNextImage = () => {
-  let nextUpdate = moment().hour(13).minute(57).second(0);
+  let nextUpdate = moment().hour(10).minute(1).second(0);
   if (moment().isAfter(nextUpdate)) {
     nextUpdate.add(1, "days");
   }
