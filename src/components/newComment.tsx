@@ -45,6 +45,11 @@ export const NewCommentSection = ({
             onChange={e => setCharsEntered(e.target.value)}
             value={charsEntered}
             disabled={isTextareaDisabled}
+            placeholder={
+              isTextareaDisabled
+                ? "Please wait..."
+                : "Comments are moderated by AI"
+            }
           />
           <div className={styles.comment__textArea__characterCount}>
             {charsEntered.length} / {maxChars}
