@@ -8,6 +8,7 @@ export type EventsResult = {
   used: boolean;
   imgUrl: string;
   revisedPrompt: string;
+  dateUpdated: string;
 };
 
 export type Comment = {

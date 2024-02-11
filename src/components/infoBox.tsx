@@ -2,6 +2,7 @@ import styles from "../styles/page.module.scss";
 import { MarvelAttributionText } from "./marvelAttribution";
 
 interface InfoBoxProps {
+  date: string;
   title: string;
   marvelDescription: string;
   revisedDescription: string;
@@ -9,6 +10,7 @@ interface InfoBoxProps {
   //  TODO: figure out how to receive a previous and next links
 }
 export const InfoBox = ({
+  date,
   title,
   marvelDescription,
   revisedDescription,
@@ -16,6 +18,7 @@ export const InfoBox = ({
 }: InfoBoxProps) => {
   return (
     <div className={styles.info_box}>
+      <p className={styles.info_box__date}>{new Date(date).toUTCString()}</p>
       <p className={styles.info_box__attribute}>EVENT TITLE</p>
       <p className={styles.info_box__value}>{title}</p>
       <p className={styles.spacer}></p>
@@ -33,7 +36,9 @@ export const InfoBox = ({
         SEE EVENT AT MARVEL.COM
       </a>
       <MarvelAttributionText />
-      <div className={styles.scrollDownToSeeComments}>⬇ Scroll down to see comments</div>
+      <div className={styles.scrollDownToSeeComments}>
+        ⬇ Scroll down to see comments
+      </div>
     </div>
   );
 };

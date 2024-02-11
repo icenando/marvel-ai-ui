@@ -28,7 +28,8 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
     notFound();
   }
 
-  const { imgUrl, title, description, revisedPrompt, url } = marvelEvent;
+  const { dateUpdated, imgUrl, title, description, revisedPrompt, url } =
+    marvelEvent;
 
   const bucketName = process.env.BUCKET_NAME;
 
@@ -41,6 +42,7 @@ const Event = async ({ params }: { params: { eventId: string } }) => {
         />
         <div className={styles.main__rightSideColumn}>
           <InfoBox
+            date={dateUpdated}
             title={title}
             marvelDescription={description}
             revisedDescription={revisedPrompt}
