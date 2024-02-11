@@ -93,6 +93,19 @@ const About = () => {
         .
       </p>
       <p className={styles.spacer}></p>
+      <p>
+        See the backend code here:{" "}
+        <a href="https://github.com/icenando/marvel-ai" target="_blank">
+          https://github.com/icenando/marvel-ai
+        </a>
+      </p>
+      <p>
+        See the frontend code here:{" "}
+        <a href="https://github.com/icenando/marvel-ai-ui" target="_blank">
+          https://github.com/icenando/marvel-ai-ui
+        </a>
+      </p>
+      <p className={styles.spacer}></p>
     </div>
   );
 
