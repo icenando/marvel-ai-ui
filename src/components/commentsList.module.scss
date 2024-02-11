@@ -1,0 +1,84 @@
+.commentCard {
+  padding: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  grid-column-gap: 20px;
+
+  &__profilePicSection {
+    display: flex;
+
+    .profilePicture {
+      margin: 0 15px 0 0;
+      border-radius: 50px;
+    }
+  }
+
+  &__username {
+    font-size: 1.2em;
+    font-weight: bold;
+    grid-column: 1;
+  }
+
+  &__timeSince {
+    font-size: 12px;
+    grid-column: 1;
+    margin-left: 10px;
+    padding-top: 5px;
+  }
+
+  &__comment {
+    grid-column: 1;
+    margin-left: 50px;
+  }
+
+  &__deleteBtn {
+    display: none;
+  }
+
+  &:hover {
+    background-color: #d9d9d9;
+    border-radius: 10px;
+
+    .commentCard {
+      &__deleteBtn {
+        display: inline;
+        grid-row-end: span 2;
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .commentCard {
+    padding-right: 0;
+    padding-left: 0;
+
+    &__profilePicSection {
+      .profilePicture {
+        margin: 0 10px 0 0;
+        border-radius: 50px;
+      }
+    }
+
+    &__username {
+      font-size: 0.8em;
+      font-weight: lighter;
+      grid-column: 1;
+    }
+
+    &__timeSince {
+      font-size: 10px;
+      grid-column: 1;
+      margin-left: 10px;
+      padding-top: 5px;
+    }
+
+    &__deleteBtn {
+      display: inline;
+      grid-row-end: span 2;
+      align-self: center;
+      width: 50px !important;
+    }
+  }
+}

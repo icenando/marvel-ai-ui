@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import styles from "../styles/page.module.scss";
+import styles from "./commentsList.module.scss";
 
 export const DeleteButton = () => {
   const { pending } = useFormStatus();

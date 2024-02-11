@@ -1,45 +1,8 @@
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  width: 100vw;
-  background-color: #d9d9d9;
-  font-size: 24px;
-  color: black;
-  text-wrap: nowrap;
-
-  a,
-  div {
-    margin: 0 50px;
-  }
-
-  span {
-    display: flex;
-  }
-}
-
-.notFound {
-  &__container {
-    text-align: center;
-  }
-
-  &__title {
-    font-size: 28px;
-    padding: 30px 0 20px 0;
-  }
-
-  &__img {
-    border: #d9d9d9 solid;
-  }
-}
-
 .main {
   background-color: #404040;
   padding: 50px 0px;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   justify-content: space-evenly;
   flex-wrap: wrap;
 
@@ -89,6 +52,7 @@
       max-height: 200px;
       overflow: scroll;
       padding-top: 5px;
+      line-height: 1.4;
     }
 
     &__link_to_event {
@@ -109,99 +73,6 @@
     .scrollDownToSeeComments {
       text-align: end;
       font-size: 24px;
-    }
-  }
-
-  .commentsList {
-    grid-column: 2;
-    max-width: 750px;
-    border: white solid;
-    border-radius: 10px;
-    margin-top: 5px;
-    padding: 15px;
-    background-color: white;
-    color: black;
-
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 5px;
-      align-items: center;
-
-      &__title {
-        font-size: 24px;
-      }
-
-      &__signedInInfo {
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      &__login_button {
-        padding: 10px;
-        width: 130px;
-        background-color: green;
-        border-radius: 15px;
-        border: none;
-      }
-
-      &__logout_button {
-        padding: 10px;
-        width: 130px;
-        background-color: red;
-        border-radius: 15px;
-        border: none;
-      }
-    }
-
-    .commentCard {
-      padding: 15px;
-      font-family: Arial, Helvetica, sans-serif;
-      display: grid;
-      grid-template-columns: 6fr 1fr;
-      grid-column-gap: 20px;
-
-      &__profilePicSection {
-        display: flex;
-
-        .profilePicture {
-          margin: 0 15px 0 0;
-          border-radius: 50px;
-        }
-      }
-
-      &__username {
-        font-size: 1.2em;
-        font-weight: bold;
-        grid-column: 1;
-      }
-
-      &__timeSince {
-        font-size: 12px;
-        grid-column: 1;
-        margin-left: 10px;
-        padding-top: 5px;
-      }
-
-      &__comment {
-        grid-column: 1;
-        margin-left: 50px;
-      }
-
-      &__deleteBtn {
-        display: none;
-      }
-
-      &:hover {
-        background-color: #d9d9d9;
-        border-radius: 10px;
-
-        .commentCard {
-          &__deleteBtn {
-            display: inline;
-            grid-row-end: span 2;
-          }
-        }
-      }
     }
   }
 
@@ -253,97 +124,8 @@
   }
 }
 
-.thumbs_section {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 50px 50px 10px 50px;
-  text-align: center;
-  &_image {
-    border: gray solid;
-    border-width: 1px;
-    margin: 10px;
-  }
-  &_coming_next {
-    height: 350px;
-    width: 350px;
-
-    display: inline-grid;
-    border: gray solid;
-    border-width: 1px;
-    margin: 10px;
-    padding: 15px;
-    align-items: center;
-    white-space: pre-line;
-  }
-}
-
 .spacer {
   height: 30px;
-}
-
-.archive {
-  height: 100%;
-  &__title {
-    font-size: 28px;
-    text-align: center;
-    padding-top: 30px;
-  }
-}
-
-.about {
-  text-align: center;
-  margin: 0 auto;
-  width: 50%;
-
-  &__title {
-    font-size: 28px;
-    padding: 30px 0 8px 0;
-  }
-
-  &__prompt {
-    font-style: italic;
-    text-align: center;
-    margin: auto;
-    max-width: 500px;
-  }
-
-  i,
-  a {
-    text-decoration: underline;
-    text-decoration-thickness: from-font;
-    text-underline-offset: 0.1rem;
-  }
-
-  &__logo {
-    border-radius: 500px;
-    margin-bottom: 10px;
-  }
-
-  &__architecture_diagram {
-    background-color: rgba(255 255 255);
-  }
-}
-
-.attribution_text {
-  font-size: 12px;
-  margin: auto;
-}
-
-.contact {
-  display: flexbox;
-  margin: auto 250px;
-  font-size: 20px;
-
-  &__title {
-    font-size: 28px;
-    text-align: center;
-    padding: 30px;
-  }
-
-  &__email {
-    font-size: 20px;
-    text-align: center;
-  }
 }
 
 @media (max-width: 1480px) {
@@ -356,47 +138,13 @@
   }
 }
 
-@media (max-width: 1000px) {
-  .header {
-    font-size: 18px;
-    position: relative;
-    z-index: 10;
-
-    a {
-      margin: 0 10px;
-    }
-  }
-}
-
 // MOBILE
 @media (max-width: 760px) {
-  .header {
-    font-size: 10px;
-    position: relative;
-    z-index: 10;
-
-    a {
-      margin: 0 10px;
-    }
-  }
-
-  .notFound {
-    &__title {
-      font-size: 28px;
-      padding: 30px 0 20px 0;
-    }
-
-    &__img {
-      object-fit: contain;
-      height: 100vmin;
-      width: auto;
-    }
-  }
-
   .main {
     padding: 0;
 
     .info_box {
+      height: fit-content;
       &__date {
         font-size: 11px;
       }
@@ -407,7 +155,8 @@
 
       &__value {
         font-size: 16px;
-        max-height: min-content;
+        max-height: max-content;
+        min-height: min-content;
       }
     }
 
@@ -416,86 +165,6 @@
       height: 100vmin;
       width: auto;
       border: #d9d9d9 solid;
-    }
-
-    .commentsList {
-      min-width: 100vmin;
-
-      .commentCard {
-        padding-right: 0;
-
-        &__deleteBtn {
-          display: inline;
-          grid-row-end: span 2;
-          align-self: center;
-          width: 55px;
-        }
-      }
-    }
-
-    .commentsList__header {
-      display: grid;
-      grid-template-columns: 6fr 1fr;
-
-      &__signedInInfo {
-        grid-column: 1;
-        margin: 5px 0 15px 0;
-      }
-
-      &__login_button {
-        grid-row: 1;
-        grid-column: 2;
-      }
-
-      &__logout_button {
-        grid-row: 1;
-        grid-column: 2;
-      }
-    }
-  }
-
-  .thumbs_section {
-    margin: 20px 0;
-    display: grid;
-
-    &_image {
-      margin: 5px;
-    }
-
-    &_coming_next {
-      height: inherit;
-      margin: 5px 12px;
-    }
-  }
-
-  .attribution_text {
-    margin-top: 20px;
-  }
-
-  .about {
-    margin: 0 auto;
-    width: 80%;
-    font-size: 12px;
-
-    &__title {
-      text-align: center;
-      font-size: 28px;
-    }
-
-    img {
-      object-fit: contain;
-      width: 80vmin;
-      height: auto;
-    }
-  }
-
-  .contact {
-    padding-top: 50px;
-    width: 80%;
-    margin: 0 auto;
-
-    &__email {
-      font-size: 14px;
     }
   }
 }

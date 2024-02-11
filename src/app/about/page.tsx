@@ -1,7 +1,8 @@
-import styles from "../../styles/page.module.scss";
+import styles from "./about.module.scss";
 import Image from "next/image";
 import architecture from "../../assets/architecture.png";
 import logo from "../../assets/logo.png";
+import { MarvelAttributionText } from "@/components/marvelAttribution";
 
 const About = () => {
   const aboutText = (
@@ -30,6 +31,8 @@ const About = () => {
         this evolving fusion of art and storytelling. Join us daily to witness
         the unfolding of this extraordinary artistic journey.
       </p>
+      <p className={styles.spacer}></p>
+      <MarvelAttributionText />
       <p className={styles.spacer}></p>
       <p>
         DISCLAIMER: This is a fan project. It is{" "}

@@ -1,0 +1,10 @@
+.attribution_text {
+  font-size: 12px;
+  margin: auto;
+}
+
+@media (max-width: 760px) {
+  .attribution_text {
+    margin-top: 20px;
+  }
+}

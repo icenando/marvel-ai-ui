@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../../styles/page.module.scss";
+import styles from "./archive.module.scss";
 import Link from "next/link";
 import { EventsResult } from "@/types/types";
 import { fetchAllEvents } from "@/api/db";

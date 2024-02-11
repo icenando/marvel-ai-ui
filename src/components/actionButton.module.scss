@@ -1,0 +1,27 @@
+.login_button {
+  padding: 10px;
+  width: 130px !important;
+  background-color: green;
+  border-radius: 15px;
+  border: none;
+}
+
+.logout_button {
+  padding: 10px;
+  width: 130px !important;
+  background-color: red;
+  border-radius: 15px;
+  border: none;
+}
+
+@media (max-width: 760px) {
+  .login_button {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .logout_button {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}

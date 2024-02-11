@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  width: 100vw;
+  background-color: #d9d9d9;
+  font-size: 24px;
+  color: black;
+  text-wrap: nowrap;
+
+  a,
+  div {
+    margin: 0 50px;
+  }
+
+  span {
+    display: flex;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    font-size: 18px;
+    position: relative;
+    z-index: 10;
+
+    a {
+      margin: 0 10px;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    font-size: 10px;
+    position: relative;
+    z-index: 10;
+
+    a {
+      margin: 0 10px;
+    }
+  }
+}

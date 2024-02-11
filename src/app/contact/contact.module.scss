@@ -1,0 +1,32 @@
+.spacer {
+  height: 30px;
+}
+
+.contact {
+  display: flexbox;
+  margin: auto 250px;
+  font-size: 20px;
+
+  &__title {
+    font-size: 28px;
+    text-align: center;
+    padding: 30px;
+  }
+
+  &__email {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .contact {
+    padding-top: 50px;
+    width: 80%;
+    margin: 0 auto;
+
+    &__email {
+      font-size: 14px;
+    }
+  }
+}

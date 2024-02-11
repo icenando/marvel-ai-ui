@@ -1,4 +1,4 @@
-import styles from "../styles/page.module.scss";
+import styles from "./commentsSection.module.scss";
 import { NewCommentSection } from "./newComment";
 import { ActionButton } from "./actionButton";
 import { fetchCommentsForEvent } from "@/api/db";

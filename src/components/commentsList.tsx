@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../styles/page.module.scss";
+import styles from "./commentsList.module.scss";
 import { Comment, User } from "@/types/types";
 import Image from "next/image";
 import incognito from "../assets/incognito.png";

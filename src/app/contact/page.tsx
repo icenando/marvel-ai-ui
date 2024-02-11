@@ -1,4 +1,4 @@
-import styles from "../../styles/page.module.scss";
+import styles from "./contact.module.scss";
 
 const Contact = () => {
   const email_address = "caravarvel.ai@gmail.com";

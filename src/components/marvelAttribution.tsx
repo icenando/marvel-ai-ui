@@ -1,4 +1,4 @@
-import styles from "../styles/page.module.scss";
+import styles from "./marvelAttribution.module.scss";
 
 export const MarvelAttributionText = () => {
   return (
