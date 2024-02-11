@@ -12,7 +12,8 @@ export default async function Home() {
 
   const todaysImage = marvelEvents.reverse()[0];
 
-  const { id, imgUrl, title, description, revisedPrompt, url } = todaysImage;
+  const { dateUpdated, id, imgUrl, title, description, revisedPrompt, url } =
+    todaysImage;
 
   const bucketName = process.env.BUCKET_NAME;
 
@@ -25,6 +26,7 @@ export default async function Home() {
         />
         <div className={styles.main__rightSideColumn}>
           <InfoBox
+            date={dateUpdated}
             title={title}
             marvelDescription={description}
             revisedDescription={revisedPrompt}
