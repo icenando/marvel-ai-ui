@@ -1,33 +1,19 @@
 "use client";
 
 import styles from "./cookieConsent.module.scss";
-import cookieImage from "../assets/cookie.png";
+import cookieImage from "../../assets/cookie.png";
 import Image from "next/image";
-import { useState } from "react";
-
-const cookieConsent = "caravarvelCookieConsent";
-
-const buildCookie = () => {
-  const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() + 30);
-  const expirationDate = currentDate.toUTCString();
-
-  return `${cookieConsent}=true;expires=${expirationDate};samesite=Strict;Secure;path=/`;
-};
-
-const setCookieConsent = () => {
-  document.cookie = buildCookie();
-};
-
-const hasCookieConsent = () => {
-  if (
-    document.cookie.split("; ").find(row => row.startsWith(`${cookieConsent}`))
-  )
-    return true;
-};
+import { useEffect, useState } from "react";
+import { hasCookieConsent, setCookieConsent } from "./helpers";
 
 const CookieConsent = () => {
-  const [hideCookieBanner, setHideCookieBanner] = useState(hasCookieConsent());
+  const [hideCookieBanner, setHideCookieBanner] = useState(true);
+
+  useEffect(() => {
+    if (!hasCookieConsent()) {
+      setHideCookieBanner(false);
+    }
+  }, []);
 
   const handleAcceptCookie = () => {
     setCookieConsent();
