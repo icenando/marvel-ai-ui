@@ -13,20 +13,29 @@
   flex-wrap: wrap;
   margin: 50px 50px 10px 50px;
   text-align: center;
+  gap: 10px;
+
+  &_title {
+    border: gray solid;
+    border-bottom: none;
+    border-width: 1px;
+    height: 30px;
+    padding: 5px;
+    background-color: rgb(90, 60, 0);
+  }
 
   &_image {
     border: gray solid;
     border-width: 1px;
-    margin: 10px;
   }
+
   &_coming_next {
-    height: 350px;
+    height: 380px;
     width: 350px;
 
     display: inline-grid;
     border: gray solid;
     border-width: 1px;
-    margin: 10px;
     padding: 15px;
     align-items: center;
     white-space: pre-line;
@@ -38,8 +47,8 @@
     margin: 20px 0;
     display: grid;
 
-    &_image {
-      margin: 5px;
+    &_title {
+      margin: 0 12px;
     }
 
     &_coming_next {
