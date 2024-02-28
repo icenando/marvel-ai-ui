@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { hasCookieConsent, setCookieConsent } from "./helpers";
 
-const CookieConsent = () => {
+const CookieConsentModal = () => {
   const [hideCookieBanner, setHideCookieBanner] = useState(true);
 
   useEffect(() => {
@@ -52,4 +52,4 @@ const CookieConsent = () => {
   );
 };
 
-export default CookieConsent;
+export default CookieConsentModal;
