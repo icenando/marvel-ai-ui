@@ -1,49 +1,20 @@
-$--hourglass_h: 70px;
+$--hourglass_h: 100px;
+$--hourglass_w: 105px;
 $--sand_w: calc($--hourglass_h/2);
 $--sand_colour: #e1a500;
 $--sand_animation_duration: 1s;
 
 @keyframes sandFlowTop {
-  0% {
-    margin-top: 0%;
-    height: 50%;
-    width: 80%;
-  }
   100% {
-    margin-top: 100%;
-    height: 0%;
-    width: 0%;
+    transform: scale(0);
+    transform-origin: bottom;
   }
 }
 
 @keyframes sandFlowBottom {
   0% {
-    margin-top: 100%;
-    height: 0%;
-    width: 0%;
-  }
-  100% {
-    margin-top: 0%;
-    height: 50%;
-    width: 80%;
-  }
-}
-
-@keyframes rotateHourglass {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(180deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  75% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(360deg);
+    transform: scale(0);
+    transform-origin: top;
   }
 }
 
@@ -58,37 +29,19 @@ $--sand_animation_duration: 1s;
 
 .hourglass {
   position: relative;
-  width: $--sand_w;
+  width: $--hourglass_w;
   height: $--hourglass_h;
-  background-color: #3a5378;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    58% 48%,
-    58% 52%,
-    100% 100%,
-    0 100%,
-    42% 52%,
-    42% 48%
-  );
-  border: 3px solid #ffffff;
-
-  // animation: rotateHourglass 3s linear infinite;
-  // animation-delay: 1.5s;
+  fill: #3a5378;
 }
 
 .sandTop {
   margin: auto;
-  width: $--sand_w;
-  background-color: $--sand_colour;
+  fill: $--sand_colour;
   animation: sandFlowTop $--sand_animation_duration linear infinite;
-  clip-path: polygon(0% 0%, 100% 0%, 51% 50%, 51% 100%, 49% 50%);
 }
 
 .sandBottom {
   margin: auto;
-  width: $--sand_w;
-  background-color: $--sand_colour;
+  fill: $--sand_colour;
   animation: sandFlowBottom $--sand_animation_duration linear infinite;
-  clip-path: polygon(0% 100%, 100% 100%, 51% 50%, 51% -50%, 49% 49%, 49% 50%);
 }
