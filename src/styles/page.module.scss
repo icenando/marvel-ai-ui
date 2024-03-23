@@ -131,6 +131,12 @@
 @media (max-width: 1480px) {
   .main {
     display: flex;
+
+    &__rightSideColumn {
+      grid-column: 2;
+      overflow-y: visible;
+      max-height: 100vh;
+    }
   }
 
   .scrollDownToSeeComments {
@@ -158,6 +164,12 @@
         max-height: max-content;
         min-height: min-content;
       }
+    }
+
+    &__rightSideColumn {
+      grid-column: 2;
+      overflow-y: visible;
+      max-height: 100vh;
     }
 
     .hero_image {
