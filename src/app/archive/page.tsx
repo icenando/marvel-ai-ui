@@ -3,7 +3,7 @@ import styles from "./archive.module.scss";
 import Link from "next/link";
 import { EventsResult } from "@/types/types";
 import { fetchAllEvents } from "@/api/db";
-// import { getTimeToNextImage } from "@/helpers/getTimeToNextImage";
+import { NextImageInTile } from "@/components/nextImageInTile";
 
 const Archive = async () => {
   const marvelEvents: EventsResult[] = await fetchAllEvents().then(
@@ -11,6 +11,7 @@ const Archive = async () => {
   );
 
   const bucketName = process.env.BUCKET_NAME;
+  // const nextImageIn = useGetTimeToNextImage();
 
   const thumbs_section = marvelEvents.reverse().map(event => {
     const { id, imgUrl, description, title } = event;
@@ -33,10 +34,7 @@ const Archive = async () => {
     <div className={styles.archive}>
       <p className={styles.archive__title}>ARCHIVE</p>
       <div className={styles.thumbs_section}>
-        <div className={styles.thumbs_section_coming_next}>
-          New image everyday at 10am GMT
-          {/* TODO {getTimeToNextImage()} */}
-        </div>
+        <NextImageInTile />
         {thumbs_section}
       </div>
     </div>
