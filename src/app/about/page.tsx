@@ -60,9 +60,10 @@ const About = () => {
         &#34;Create a Caravaggio style painting based on the following prompt,
         ignoring the artists who created this story if there are any references
         to them. Focus on the summary of the story. Do not include any text in
-        the resulting image. Ensure that there are no DC comics characters in
-        the resulting image, and that there is racial, gender, physical and
-        sexual diversity:&#34;
+        the resulting image. Ensure that there are no copyrighted characters in
+        the resulting image, and that there is ethnic, gender, physical and
+        sexual diversity. Replace any elements of this prompt with generic ones
+        to avoid breach of copyright:&#34;
       </p>
       <p className={styles.spacer}></p>
       <p>followed by the description of the event.</p>
