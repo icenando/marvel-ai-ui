@@ -11,9 +11,7 @@ export const dynamicParams = true;
 
 // Create links for the [eventId] dynamic path for all used events in DB
 export const generateStaticParams = async () => {
-  const allUsedEvents: EventsResult[] = await fetchAllEvents().then(
-    res => res as EventsResult[]
-  );
+  const allUsedEvents = (await fetchAllEvents()) as EventsResult[];
 
   return allUsedEvents.map(usedEvent => ({ eventId: usedEvent.id.toString() }));
 };
