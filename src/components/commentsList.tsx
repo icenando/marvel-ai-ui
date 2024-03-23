@@ -4,10 +4,11 @@ import styles from "./commentsList.module.scss";
 import { Comment, User } from "@/types/types";
 import Image from "next/image";
 import incognito from "../assets/incognito.png";
-import moment from "moment";
+import { formatDistance } from "date-fns";
 import { deleteComment } from "@/api/formActions";
 import { useFormState } from "react-dom";
 import DeleteButton from "./deleteButton";
+import { useEffect, useState } from "react";
 
 type CommentsListProps = {
   user: User;
@@ -21,6 +22,17 @@ export const CommentsList = ({ user, comments }: CommentsListProps) => {
   const ProfilePic = ({ comment }: ProfilePicProps) => {
     const { profilePicture, username } = comment;
 
+    const [timeSinceComment, setTimeSinceComment] = useState("");
+    useEffect(() => {
+      setInterval(
+        () =>
+          setTimeSinceComment(
+            formatDistance(comment.dateUpdated, Date.now(), { addSuffix: true })
+          ),
+        1000
+      );
+    });
+
     return (
       <div className={styles.commentCard__profilePicSection}>
         <Image
@@ -31,9 +43,7 @@ export const CommentsList = ({ user, comments }: CommentsListProps) => {
           alt="user profile picture"
         />
         <div className={styles.commentCard__username}>{username}</div>
-        <div className={styles.commentCard__timeSince}>
-          {moment(comment.dateUpdated).fromNow()}
-        </div>
+        <div className={styles.commentCard__timeSince}>{timeSinceComment}</div>
       </div>
     );
   };
