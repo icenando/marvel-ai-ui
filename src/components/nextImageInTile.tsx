@@ -5,7 +5,7 @@ import styles from "../app/archive/archive.module.scss";
 import { useRouter } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-export const NextImageInTile = async () => {
+export const NextImageInTile = () => {
   const timeToNewImage = useGetTimeToNextImage();
 
   const router = useRouter();
