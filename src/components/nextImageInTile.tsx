@@ -12,7 +12,7 @@ export const NextImageInTile = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (timeToNewImage.split(":")[2].endsWith("0")) {
+    if (timeToNewImage === "00:00:00") {
       const protocol = window.location.protocol;
       const host = window.location.hostname;
       const port = window.location.port ? `:${window.location.port}` : "";
