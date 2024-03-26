@@ -12,15 +12,14 @@ export const NextImageInTile = () => {
 
   useEffect(() => {
     if (timeToNewImage === "00:00:00") {
-      (async () => {
-        const protocol = window.location.protocol;
-        const host = window.location.hostname;
-        const port = window.location.port ? `:${window.location.port}` : "";
-        const baseUrl = `${protocol}//${host}${port}`;
-        const endpoint = `${baseUrl}/api/revalidate`;
+      const protocol = window.location.protocol;
+      const host = window.location.hostname;
+      const port = window.location.port ? `:${window.location.port}` : "";
+      const baseUrl = `${protocol}//${host}${port}`;
+      const endpoint = `${baseUrl}/api/revalidate`;
+      fetch(endpoint);
 
-        await fetch(endpoint).then(() => router.refresh());
-      })();
+      router.refresh();
     }
   }, [router, timeToNewImage]);
 
