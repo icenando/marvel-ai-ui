@@ -34,7 +34,7 @@ const Archive = async () => {
       <p className={styles.archive__title}>ARCHIVE</p>
       <div className={styles.thumbs_section}>
         <div className={styles.thumbs_section_coming_next}>
-          New image everyday at 10am GMT
+          New image everyday at 10am UTC
           {/* TODO {getTimeToNextImage()} */}
         </div>
         {thumbs_section}
