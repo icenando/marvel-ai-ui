@@ -14,6 +14,33 @@ const db = new DynamoDB.DocumentClient({
 });
 
 // EVENTS
+export const getEventsCount = async (): Promise<void | number> => {
+  if (!eventsTable) {
+    throw "Couldn't read table name from env vars";
+  }
+
+  const db = new DynamoDB();
+
+  const params = {
+    TableName: eventsTable,
+  };
+
+  return new Promise((resolve, reject) => {
+    db.describeTable(params, (err, data) => {
+      if (err) {
+        console.error("Failed to get total events count");
+        console.error(JSON.stringify(err, null, 2), err.stack);
+        reject(err);
+      } else {
+        console.log("getEventsCount succeeded!");
+        // console.debug(data.Table?.ItemCount);
+
+        resolve(data.Table?.ItemCount);
+      }
+    });
+  });
+};
+
 export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
   if (!eventsTable) {
     throw "Couldn't read table name from env vars";
@@ -39,7 +66,7 @@ export const fetchAllEvents = async (): Promise<void | EventsResult[]> => {
         );
         reject(err);
       } else {
-        console.info("fetchAllEvents scan succeeded.");
+        console.info("fetchAllEvents scan succeeded!");
         // console.debug(`Items: ${JSON.stringify(data!.Items, null, 2)}`);
         resolve(data.Items as EventsResult[]);
       }
